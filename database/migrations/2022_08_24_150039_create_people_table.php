@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('people', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 50);
+            $table->string('email', 50)->unique();
+            $table->string('document')->unique();
+            $table->string('phone', 30);
+            $table->bigInteger('type_document_id')->unsigned();
+            $table->timestamps();
+
+        
+           $table->foreign('type_document_id')->references('id')->on('type_documents');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('people');
+    }
+};
