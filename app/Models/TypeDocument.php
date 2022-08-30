@@ -10,10 +10,11 @@ class TypeDocument extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
+        'name'
     ];
 
-    protected $table = 'type_documents';
+   
+    protected $table = 'typeDocuments';
     
 
     public function peoples()

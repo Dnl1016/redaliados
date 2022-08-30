@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class TypeDocumentResource extends JsonResource
 {
@@ -14,8 +15,6 @@ class TypeDocumentResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
-
         return[
             'Nombre'=> Str::of($this->name)->upper()
         ];

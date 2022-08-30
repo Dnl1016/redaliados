@@ -32,7 +32,7 @@ class TypeDocumentController extends Controller
         
         // return response()->json([
         //     'res'=>true,
-        //     'msg'=>'La persona quedo guardada correctamente'
+        //     'msg'=>'e guardo correctamente'
         // ],200);
 
         return (new TypeDocumentResource(TypeDocument::create($request->all())))

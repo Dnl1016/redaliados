@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class type_documentSeeder extends Seeder
+class typeDocumentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class type_documentSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('type_documents')->insert([
+        DB::table('typeDocuments')->insert([
         [    
             'name'=> 'cedula'       
         ],

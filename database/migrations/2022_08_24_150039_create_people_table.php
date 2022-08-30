@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
 
         
-           $table->foreign('type_document_id')->references('id')->on('type_documents');
+           $table->foreign('type_document_id')->references('id')->on('typeDocuments');
         });
     }
 

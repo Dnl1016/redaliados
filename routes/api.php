@@ -36,7 +36,7 @@ Route::delete('persona/{persona}', [PeopleController::class, 'destroy']);
 
 Route::get('TiposDocumentos', [TypeDocumentController::class, 'index']);
 
-Route::post('persona', [TypeDocumentController::class, 'store']);
+Route::post('TipoDocumento', [TypeDocumentController::class, 'store']);
 
 Route::get('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'show']);
 
