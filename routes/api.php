@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\Api\PeopleController;
 use  App\Http\Controllers\Api\TypeDocumentController;
-
+use  App\Http\Controllers\Api\TalentController;
+use  App\Http\Controllers\Api\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//personas
 Route::get('personas', [PeopleController::class, 'index']);
 
 Route::post('persona', [PeopleController::class, 'store']);
@@ -33,8 +35,31 @@ Route::delete('persona/{persona}', [PeopleController::class, 'destroy']);
 
 // Route::apiResource('personas', PeopleController::class);
 
+//tipo documento
+Route::get('tiposDocumentos', [TypeDocumentController::class, 'index']);
 
-Route::get('TiposDocumentos', [TypeDocumentController::class, 'index']);
+Route::post('tipoDocumento', [TypeDocumentController::class, 'store']);
+
+Route::get('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'show']);
+
+Route::put('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'update']);
+
+Route::delete('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'destroy']);
+
+//talento
+Route::get('talentos', [TalentController::class, 'index']);
+
+Route::post('talento', [TalentController::class, 'store']);
+
+Route::get('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'show']);
+
+Route::put('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'update']);
+
+Route::delete('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'destroy']);
+
+
+//Compañia
+Route::get('compañias', [CompanyController::class, 'index']);
 
 Route::post('TipoDocumento', [TypeDocumentController::class, 'store']);
 
@@ -43,3 +68,7 @@ Route::get('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'sho
 Route::put('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'update']);
 
 Route::delete('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'destroy']);
+
+
+
+

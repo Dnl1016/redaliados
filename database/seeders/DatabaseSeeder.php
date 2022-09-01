@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\PeopleSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,6 +23,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(TypeDocumentSeeder::class);
         $this->call(PeopleSeeder::class);
+        $this->call(TalentSeeder::class);
+        $this->call(CompanySeeder::class);
        
 
 

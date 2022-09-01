@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('talents', function (Blueprint $table) {
             $table->id();
-            $table->string('jobTittle', 50);
-            $table->string('businessName', 50);
+            $table->string('jobTittle');
+            $table->string('businessName');
             $table->string('indrustyRegistration', 50);
-            $table->string('typeTalents')->default('natural');
-            $table->string('productDescription', 300);
-            $table->string('educationalLevel', 50);
+            $table->enum('typeTalents',['Natural','Juridico']);
+            $table->enum('educationalLevel',['Ingeniero','Tecnologo']);
+            $table->text('productDescription');
+            $table->string('announcement')->nullable();
 
            // $table->bigInteger('people_id')->unsigned();
            //$table->foreign('people_id')->references('id')->on('people');

@@ -11,7 +11,6 @@ class People extends Model
     use HasFactory;
 
     protected $fillable = [
-        // 'id_person',
         'name',
         'email',
         'document',

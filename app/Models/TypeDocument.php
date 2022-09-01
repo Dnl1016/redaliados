@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class TypeDocument extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
         'name'
     ];

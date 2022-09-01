@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\StoreTypeDocumentRequest;
-use App\Http\Resources\CompanyResource;
-use App\Models\TypeDocument;
+use App\Http\Requests\StoreTalentRequest;
+use App\Http\Requests\UpdateTalentRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Talent;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\TypeDocumentResource;
+use App\Http\Resources\TalentResource;
 
-class TypeDocumentController extends Controller
+class TalentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +19,8 @@ class TypeDocumentController extends Controller
      */
     public function index()
     {
-        //return TypeDocument::all();
-        return TypeDocumentResource::collection(TypeDocument::all());
+        //return Talent::all();
+        return TalentResource::collection(Talent::all());
     }
 
     /**
@@ -29,13 +29,18 @@ class TypeDocumentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTypeDocumentRequest $request)
+    public function store(Request $request)
     {
         Talent::create($request->all());
         return response()->json([
                 'res'=>true,
                 'msg'=>'Quedo guardada correctamente'
             ],200);
+
+        // return (new PeopleResource(People::create($request->all())))
+        // ->additional(['msg'=>'se guardo correctamente'])
+        // ->response()
+        // ->setStatusCode(202);
     }
 
     /**
@@ -44,9 +49,9 @@ class TypeDocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(TypeDocument $TipoDocumento)
+    public function show($id)
     {
-        return new TypeDocumentResource($TipoDocumento);
+        //
     }
 
     /**
@@ -56,14 +61,9 @@ class TypeDocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TypeDocumentRequest $request, TypeDocument $TipoDocumento)
+    public function update(Request $request, $id)
     {
-       
-        $TipoDocumento->update($request->validated());
-        return (new TypeDocumentResource($TipoDocumento))
-        ->additional(['msg'=>'se actualizo correctamente'])
-        ->response()
-        ->setStatusCode(202);
+        //
     }
 
     /**
@@ -72,12 +72,8 @@ class TypeDocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy( TypeDocument  $TipoDocumento)
+    public function destroy($id)
     {
-        $TipoDocumento->delete();
-        return (new TypeDocumentResource($TipoDocumento))
-        ->additional(['msg'=>'se elimino correctamente'])
-        ->response()
-        ->setStatusCode(202);
+        //
     }
 }

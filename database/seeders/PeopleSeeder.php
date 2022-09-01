@@ -17,6 +17,11 @@ class PeopleSeeder extends Seeder
     {
         DB::table('people')->insert([
             [
+                // "name"=> $faker->name(),
+                // "email"=> $faker->unique()->safeEmail,
+                // "document"=> $faker->unique(),
+                // "phone"=> $faker->phoneNumber,
+                // "type_document_id"=> $faker->numberBetween(1,10),
                 'name'=> 'Daniel David',
                 'email'=> 'test@test.com',
                 'document'=> '14213557',

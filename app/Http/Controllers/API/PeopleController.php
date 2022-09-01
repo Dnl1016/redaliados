@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\API;
-use App\Http\Requests\RequestPeople;
+
+use App\Http\Requests\StorePeopleRequest;
 use App\Http\Requests\UpdatePeopleRequest;
 use App\Models\People;
 use App\Http\Controllers\Controller;
@@ -28,7 +29,7 @@ class PeopleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestPeople $request)
+    public function store(StorePeopleRequest $request)
     {
         
         // return response()->json([
