@@ -26,8 +26,8 @@ return new class extends Migration
             $table->string('representativeDocument')->nullable();
             $table->string('commercialRegister')->nullable();
 
-           // $table->bigInteger('talents_id')->unsigned();
-           //$table->foreign('talents_id')->references('id')->on('talents');
+           $table->bigInteger('talents_id')->unsigned();
+           $table->foreign('talents_id')->references('id')->on('talents');
         });
     }
 

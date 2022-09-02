@@ -23,8 +23,8 @@ return new class extends Migration
             $table->text('productDescription');
             $table->string('announcement')->nullable();
 
-           // $table->bigInteger('people_id')->unsigned();
-           //$table->foreign('people_id')->references('id')->on('people');
+           $table->bigInteger('people_id')->unsigned();
+           $table->foreign('people_id')->references('id')->on('people');
 
         });
     }

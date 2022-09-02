@@ -35,4 +35,11 @@ class People extends Model
         return $this->belongsTo(TypeDocument::class, 'type_document_id');
     }
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'people_id');
+    }
+
+    
+
 }
