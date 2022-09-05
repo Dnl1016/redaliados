@@ -17,6 +17,7 @@ class TalentResource extends JsonResource
     {
         return[
             'Identificador' => $this->id,
+            'Persona'=>  Str::of( $this->people->name)->upper(),
             'Cargo'=> Str::of($this->jobTittle)->upper(),
             'Nombre Negocio' =>Str::of ($this->businessName)->upper(),
             'Registro industrial' => $this->indrustyRegistration,

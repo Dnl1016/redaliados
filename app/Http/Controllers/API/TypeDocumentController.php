@@ -31,7 +31,7 @@ class TypeDocumentController extends Controller
      */
     public function store(StoreTypeDocumentRequest $request)
     {
-        Talent::create($request->all());
+        TypeDocument::create($request->all());
         return response()->json([
                 'res'=>true,
                 'msg'=>'Quedo guardada correctamente'
@@ -56,7 +56,7 @@ class TypeDocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TypeDocumentRequest $request, TypeDocument $TipoDocumento)
+    public function update(StoreTypeDocumentRequest $request, TypeDocument $TipoDocumento)
     {
        
         $TipoDocumento->update($request->validated());

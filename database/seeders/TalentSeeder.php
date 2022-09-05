@@ -23,9 +23,10 @@ class TalentSeeder extends Seeder
                 'jobTittle'=> 'gerente',
                 'businessName'=> 'Mangos20',
                 'indrustyRegistration'=> '64576787867',
-                'typeTalents'=>'Natural',
+                'typeTalents'=>'Juridico',
                 'educationalLevel'=> 'Tecnologo',
-                'productDescription'=> "Mangos grandes y sin pepas, totalmente jugosos , la mitad es biche y la otra es madura generando un nuevo sabor!"
+                'productDescription'=> "Mangos grandes y sin pepas, totalmente jugosos , la mitad es biche y la otra es madura generando un nuevo sabor!",
+                'people_id'=> 3,
             ],
             [
                 'jobTittle'=> 'secretario',
@@ -33,7 +34,8 @@ class TalentSeeder extends Seeder
                 'indrustyRegistration'=> '6457670890',
                 'typeTalents'=>'Natural',
                 'educationalLevel'=> 'Tecnologo',
-                'productDescription'=> "motos de alto ciladranje... dandole duro Run!"
+                'productDescription'=> "motos de alto ciladranje... dandole duro Run!",
+                'people_id'=> 1,
             ],
         ]);
     }

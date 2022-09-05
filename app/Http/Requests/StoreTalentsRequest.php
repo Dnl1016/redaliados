@@ -30,7 +30,7 @@ class StoreTalentsRequest extends FormRequest
             "typeTalent"=>'required',
             "educationalLevel"=> 'required',
             "productDescription"=> 'required',
-            // "announcement" => 'required',
+
         ];
     }
 }

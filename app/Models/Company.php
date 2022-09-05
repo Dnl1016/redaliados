@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Talent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,11 +20,17 @@ class Company extends Model
         'legalNature',
         'taxRegistration',
         'representativeDocument',
-        'commercialRegister'
+        'commercialRegister',
+        'talents_id',
     ];
 
 
     protected $table = 'companies';
+
+    public function talents()
+        {
+            return $this->belongsTo(Talent::class, 'talents_id');
+        }
 
 }
 

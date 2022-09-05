@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\TypeDocument;
+use App\Models\Talent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,7 +28,7 @@ class People extends Model
         
     ];
 
-   
+    protected $table = 'people';
     /**
      * Get the post that owns the comment.
      */
@@ -38,7 +40,14 @@ class People extends Model
     public function user()
     {
         return $this->hasOne(User::class, 'people_id');
+    }   
+
+    public function talents()
+    {
+        return $this->hasOne(Talent::class);
     }
+
+
 
     
 

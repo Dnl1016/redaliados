@@ -17,6 +17,7 @@ class CompanyResource extends JsonResource
     {
         return[
             'Identificador' => $this->id,
+            "Nombre Negocio"=>Str::of($this->talents->businessName)->upper(),
             'Nombre comercial'=> Str::of($this->tradename)->upper(),
             'Dirección'=> $this->address,
             'teléfono'=>$this->phone,
@@ -26,7 +27,8 @@ class CompanyResource extends JsonResource
             'naturaleza jurídica'=>$this->legalNature,
             'registro de impuestos' => $this->taxRegistration,
             'documento representativo'=> $this-> representativeDocument,
-            'registro comercial'=> $this->commercialRegister
+            'registro comercial'=> $this->commercialRegister,
+            
         ];
     }
     // 'tradename',

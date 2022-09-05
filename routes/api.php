@@ -23,20 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //usuarios
-Route::get('usuarios', [PeopleController::class, 'index']);
-
-Route::post('usuario', [PeopleController::class, 'store']);
-
-Route::get('usuario/{usuario}', [PeopleController::class, 'show']);
-
-Route::put('usuario/{usuario}', [PeopleController::class, 'update']);
-
-Route::delete('usuario/{usuario}', [PeopleController::class, 'destroy']);
+Route::apiResource('usuarios', UserController::class);
 
 //personas
-Route::get('personas', [PeopleController::class, 'index']);
 
-Route::post('persona', [PeopleController::class, 'store']);
+Route::apiResource('personas', PeopleController::class)
+->only(['index', 'show']);
 
 Route::get('persona/{persona}', [PeopleController::class, 'show']);
 
@@ -44,14 +36,14 @@ Route::put('persona/{persona}', [PeopleController::class, 'update']);
 
 Route::delete('persona/{persona}', [PeopleController::class, 'destroy']);
 
-// Route::apiResource('personas', PeopleController::class);
 
 //tipo documento
-Route::get('tiposDocumentos', [TypeDocumentController::class, 'index']);
+
+Route::apiResource('tiposDocumentos', TypeDocumentController::class)->only([
+    'index', 'show'
+]);
 
 Route::post('tipoDocumento', [TypeDocumentController::class, 'store']);
-
-Route::get('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'show']);
 
 Route::put('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'update']);
 

@@ -20,13 +20,9 @@ class CompanySeeder extends Seeder
                 'tradename'=> 'DNL',
                 'address'=> 'cra lejos # 3- cuadras cerca',
                 'phone'=> '314256568',
-                
+                'talents_id'=>1,
             ],
-            [
-                'tradename'=> 'Caliche el biche',
-                'address'=> 'cra lejos # 3- 4',
-                'phone'=> '31425658789',
-            ]  
+           
         ]);
     }
 }

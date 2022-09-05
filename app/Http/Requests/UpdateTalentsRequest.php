@@ -24,7 +24,12 @@ class UpdateTalentsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "jobTittle" =>'required',
+            "businessName"=>'required',
+            "indrustyRegistration"=> 'required',
+            "typeTalent"=>'required',
+            "educationalLevel"=> 'required',
+            "productDescription"=> 'required',
         ];
     }
 }
