@@ -12,20 +12,15 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {   
-        Schema::create('projects', function (Blueprint $table) {
+    {
+        Schema::create('lines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->timestamps();
-            $table->date('remissionDate');
 
-            $table->bigInteger('status_id')->unsigned();
-            $table->foreign('status_id')->references('id')->on('status');
-
-
-            $table->bigInteger('ideas_id')->unsigned();
-            $table->foreign('ideas_id')->references('id')->on('ideas');
+            $table->bigInteger('allies_id')->unsigned();
+            $table->foreign('allies_id')->references('id')->on('allies');
+            
         });
     }
 
@@ -36,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        
+        //
     }
 };

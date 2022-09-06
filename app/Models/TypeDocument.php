@@ -16,11 +16,10 @@ class TypeDocument extends Model
 
    
     protected $table = 'typeDocuments';
-    
 
     public function peoples()
     {
-        return  $this->hasMany(People::class); // relacion muchos a uno
+        return  $this->hasMany(People::class); // Relationship One To Many
     }
     
 }

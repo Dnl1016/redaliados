@@ -1,0 +1,86 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Ally;
+use App\Http\Requests\StoreAllyRequest;
+use App\Http\Requests\UpdateAllyRequest;
+
+class AllyController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreAllyRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreAllyRequest $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Ally  $ally
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Ally $ally)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Ally  $ally
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Ally $ally)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateAllyRequest  $request
+     * @param  \App\Models\Ally  $ally
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateAllyRequest $request, Ally $ally)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Ally  $ally
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Ally $ally)
+    {
+        //
+    }
+}

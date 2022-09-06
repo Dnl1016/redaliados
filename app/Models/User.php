@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Ally;
 use App\Models\People;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -63,11 +64,15 @@ class User extends Authenticatable
         return Str::random(40);
     }
 
-
     protected $table = 'people';
 
     public function people()
     {
-        return $this->belongsTo(People::class, 'people_id');
+        return $this->belongsTo(People::class, 'people_id'); // Relationship one to one  (inverse)/Belongs to
+    }
+
+    public function allies()
+    {
+        return $this->belongsTo(Ally::class); // Relationship One To Many (inverse)/Belongs to
     }
 }

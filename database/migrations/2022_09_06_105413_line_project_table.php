@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lines', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            
+        Schema::create('line_project', function (Blueprint $table) {
+            $table->bigInteger('lines_id')->unsigned();
+            $table->foreign('lines_id')->references('id')->on('lines');
+
+            $table->bigInteger('projects_id')->unsigned();
+            $table->foreign('projects_id')->references('id')->on('projects');
+
+
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('line_project');
     }
 };

@@ -29,7 +29,7 @@ class Company extends Model
 
     public function talents()
         {
-            return $this->belongsTo(Talent::class, 'talents_id');
+            return $this->belongsTo(Talent::class, 'talents_id'); //  Relationship one to one (inverse)
         }
 
 }

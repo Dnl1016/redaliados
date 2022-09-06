@@ -34,17 +34,17 @@ class People extends Model
      */
     public function documentType()
     {
-        return $this->belongsTo(TypeDocument::class, 'type_document_id');
+        return $this->belongsTo(TypeDocument::class, 'type_document_id'); // Relationship One To Many (inverse)/Belongs to
     }
 
     public function user()
     {
-        return $this->hasOne(User::class, 'people_id');
+        return $this->hasOne(User::class, 'people_id'); // Relationship one to one 
     }   
 
     public function talents()
     {
-        return $this->hasOne(Talent::class);
+        return $this->hasOne(Talent::class);  // Relationship one to one 
     }
 
 

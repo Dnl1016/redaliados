@@ -17,16 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('email', 50)->unique();
-            $table->string('document')->unique();
+            $table->string('status')->default('activo');
             $table->string('phone', 30);
             $table->text('address');
             $table->string('nodeName');
             $table->string('region', 50);
-            $table->string('formatiionCenter', 50);
-
-            $table->bigInteger('lines_id')->unsigned();
-            $table->foreign('lines_id')->references('id')->on('lines');
-            
+            $table->string('formatiionCenter', 50);            
         });
     }
 
