@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\TypeDocument;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class TypeDocumentFactory extends Factory
 {
+    protected $model = TypeDocument::class;
     /**
      * Define the model's default state.
      *
@@ -17,7 +19,7 @@ class TypeDocumentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "name" => fake()->name(),
         ];
     }
 }

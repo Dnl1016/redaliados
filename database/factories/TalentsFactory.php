@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 use App\Models\People;
+use App\Models\Talent;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

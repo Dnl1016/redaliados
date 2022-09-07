@@ -27,10 +27,13 @@ Route::apiResource('usuarios', UserController::class);
 
 //personas
 
-Route::apiResource('personas', PeopleController::class)
-->only(['index', 'show']);
+// Route::apiResource('personas', PeopleController::class)
+// ->only(['index', 'show']);
+Route::get('personas', [PeopleController::class, 'index']);
 
 Route::get('persona/{persona}', [PeopleController::class, 'show']);
+
+Route::post('persona', [PeopleController::class, 'store']);
 
 Route::put('persona/{persona}', [PeopleController::class, 'update']);
 

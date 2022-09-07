@@ -16,6 +16,7 @@ class TypeDocument extends Model
 
    
     protected $table = 'typeDocuments';
+    public $timestamps = false;
 
     public function peoples()
     {

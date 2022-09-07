@@ -19,11 +19,9 @@ return new class extends Migration
             $table->string('email', 50)->unique();
             $table->string('document')->unique();
             $table->string('phone', 30);
-            $table->bigInteger('type_document_id')->unsigned();
+            $table->bigInteger('typeDocument_id')->unsigned();
             $table->timestamps();
-
-        
-           $table->foreign('type_document_id')->references('id')->on('typeDocuments');
+           $table->foreign('typeDocument_id')->references('id')->on('typeDocuments');
         });
     }
 

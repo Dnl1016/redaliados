@@ -20,13 +20,11 @@ class PeopleFactory extends Factory
     public function definition()
     {
         return [
-            "name"=> $this->faker->name(),
-            "email"=> $this->faker->unique()->safeEmail,
-            "document"=> $this->faker->unique(),
-            "phone"=> $this->faker->phoneNumber,
-            "type_document_id" => function(){
-                return TypeDocument::all()->random();
-            }
+            "name"=> fake()->name(),
+            "email"=> fake()->unique()->safeEmail,
+            "document"=> fake()->unique(),
+            "phone"=> fake()->phoneNumber(),
+            "typeDocument_id" => 'factory:App\Models\People;',
         ];
     }
 }

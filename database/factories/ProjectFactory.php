@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Status;
+use App\Models\Idea;
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProjectFactory extends Factory
 {
+    protected $model = Project::class;
     /**
      * Define the model's default state.
      *
@@ -17,7 +21,17 @@ class ProjectFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "name"=> fake()->name(),
+            "description" => fake()->description,
+            "starDate" => now(),
+            "updateDate" => now(),
+            "remissionDate"=> now(),
+            "status_id" => function(){
+                return Status::all()->random();
+            },
+            "ideas_id" => function(){
+                return Idea::all()->random();
+            },    
         ];
     }
 }

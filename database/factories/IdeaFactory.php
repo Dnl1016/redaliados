@@ -1,6 +1,8 @@
 <?php
 
 namespace Database\Factories;
+use App\Models\Idea;
+use App\Models\Talent;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -9,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class IdeaFactory extends Factory
 {
+    protected $model = Idea::class;
     /**
      * Define the model's default state.
      *
@@ -17,7 +20,12 @@ class IdeaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "name" => fake()->name(),
+            "description" => fake()->description,
+            "talents_id"=> function(){
+                return Talent::all()->random();
+            }
+
         ];
     }
 }

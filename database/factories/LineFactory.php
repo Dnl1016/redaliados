@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Ally;
+use App\Models\Line;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class LineFactory extends Factory
 {
+    protected $model = Line::class;
     /**
      * Define the model's default state.
      *
@@ -17,7 +20,12 @@ class LineFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "name" => fake()->name(),
+            "description" => fake()->description,
+            "talents_id"=> function(){
+                return Ally::all()->random();
+            }
+
         ];
     }
 }

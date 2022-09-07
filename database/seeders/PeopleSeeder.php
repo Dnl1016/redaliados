@@ -26,7 +26,7 @@ class PeopleSeeder extends Seeder
                 'email'=> 'test@test.com',
                 'document'=> '14213557',
                 'phone'=> '31578956563',
-                'type_document_id'=> 3,
+                'typeDocument_id'=> 3,
                 'created_at'=> date('Y-m-d H:i:s'),
                 'updated_at'=> date('Y-m-d H:i:s')
             ],
@@ -35,7 +35,7 @@ class PeopleSeeder extends Seeder
                 'email'=> 'test2@test.com',
                 'document'=> '14867867',
                 'phone'=> '31575456563',
-                'type_document_id'=> 2,
+                'typeDocument_id'=> 2,
                 'created_at'=> date('Y-m-d H:i:s'),
                 'updated_at'=> date('Y-m-d H:i:s'),
             ],

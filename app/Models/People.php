@@ -17,24 +17,25 @@ class People extends Model
         'email',
         'document',
         'phone',
-        'type_document_id',
-        'created_at',
-        'updated_at',
+        'typeDocument_id',
+        
     ];
 
     protected $hidden = [
-        //'created_at',
-        //'updated_at',
+        'created_at',
+        'updated_at',
         
     ];
 
     protected $table = 'people';
+   
+
     /**
      * Get the post that owns the comment.
      */
     public function documentType()
     {
-        return $this->belongsTo(TypeDocument::class, 'type_document_id'); // Relationship One To Many (inverse)/Belongs to
+        return $this->belongsTo(TypeDocument::class, 'typeDocument_id'); // Relationship One To Many (inverse)/Belongs to
     }
 
     public function user()
