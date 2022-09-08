@@ -13,17 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('skills', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
-
-            $table->bigInteger('talents_id')->unsigned();
-            $table->foreign('talents_id')->references('id')->on('talents');
-
-            $table->bigInteger('categories_id')->unsigned();
-            $table->foreign('categories_id')->references('id')->on('categories');
-            
         });
     }
 
@@ -34,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('categories');
     }
 };

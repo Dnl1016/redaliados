@@ -42,26 +42,29 @@ Route::delete('persona/{persona}', [PeopleController::class, 'destroy']);
 
 //tipo documento
 
-Route::apiResource('tiposDocumentos', TypeDocumentController::class)->only([
-    'index', 'show'
-]);
+// Route::apiResource('tiposDocumentos', TypeDocumentController::class)->only([
+//     'index', 'show'
+// ]);
+Route::get('tiposDocumentos', [TypeDocumentController::class, 'index']);
+
+Route::get('tipoDocumento/{tipoDocumento}', [TypeDocumentController::class, 'show']);
 
 Route::post('tipoDocumento', [TypeDocumentController::class, 'store']);
 
-Route::put('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'update']);
+Route::put('tipoDocumento/{tipoDocumento}', [TypeDocumentController::class, 'update']);
 
-Route::delete('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'destroy']);
+Route::delete('tipoDocumento/{tipoDocumento}', [TypeDocumentController::class, 'destroy']);
 
 //talento
 Route::get('talentos', [TalentController::class, 'index']);
 
 Route::post('talento', [TalentController::class, 'store']);
 
-Route::get('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'show']);
+Route::get('talento/{talento}', [TalentController::class, 'show']);
 
-Route::put('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'update']);
+Route::put('talento/{talento}', [TalentController::class, 'update']);
 
-Route::delete('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'destroy']);
+Route::delete('talento/{talento}', [TalentController::class, 'destroy']);
 
 
 //Compañia

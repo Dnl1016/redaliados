@@ -4,13 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Skill;
 
-class Study extends Model
+class Category extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'description',
+        
     ];
+    
+    public function skills()
+    {
+        return $this->belongsTo(Skill::class); // Relationship One To Many (inverse)/Belongs to
+    }
 }

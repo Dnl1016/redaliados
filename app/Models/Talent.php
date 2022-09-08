@@ -23,6 +23,8 @@ class Talent extends Model
         
     ];
 
+    public $timestamps = false;
+
     protected $table = 'talents';
 
     public function people()
@@ -33,6 +35,16 @@ class Talent extends Model
     public function companies()
     {
         return $this->hasOne(Company::class, 'talents_id'); // Relationship one to one 
+    }
+
+    public function ideas()
+    {
+        return $this->belongsTo(TypeDocument::class); // Relationship One To Many (inverse)/Belongs to
+    }
+
+    public function skills()
+    {
+        return $this->belongsTo(Skill::class); // Relationship One To Many (inverse)/Belongs to
     }
 
 }

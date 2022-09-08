@@ -28,6 +28,8 @@ class TalentResource extends JsonResource
         ];
     }
 
+   
+
     
     public function with($request)
     {

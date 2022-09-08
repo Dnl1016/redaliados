@@ -31,11 +31,16 @@ class TypeDocumentController extends Controller
      */
     public function store(StoreTypeDocumentRequest $request)
     {
-        TypeDocument::create($request->all());
-        return response()->json([
-                'res'=>true,
-                'msg'=>'Quedo guardada correctamente'
-            ],200);
+        // TypeDocument::create($request->all());
+        // return response()->json([
+        //         'res'=>true,
+        //         'msg'=>'Quedo guardada correctamente'
+        //     ],200);
+
+            return (new TypeDocumentResource(TypeDocument::create($request->all())))
+            ->additional(['msg'=>'se guardo correctamente'])
+            ->response()
+            ->setStatusCode(202);
     }
 
     /**
@@ -44,9 +49,9 @@ class TypeDocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(TypeDocument $TipoDocumento)
+    public function show(TypeDocument $tipoDocumento)
     {
-        return new TypeDocumentResource($TipoDocumento);
+        return new TypeDocumentResource($tipoDocumento);
     }
 
     /**
@@ -56,11 +61,11 @@ class TypeDocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreTypeDocumentRequest $request, TypeDocument $TipoDocumento)
+    public function update(StoreTypeDocumentRequest $request, TypeDocument $tipoDocumento)
     {
        
-        $TipoDocumento->update($request->validated());
-        return (new TypeDocumentResource($TipoDocumento))
+        $tipoDocumento->update($request->validated());
+        return (new TypeDocumentResource($tipoDocumento))
         ->additional(['msg'=>'se actualizo correctamente'])
         ->response()
         ->setStatusCode(202);
@@ -72,10 +77,10 @@ class TypeDocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy( TypeDocument  $TipoDocumento)
+    public function destroy( TypeDocument  $tipoDocumento)
     {
-        $TipoDocumento->delete();
-        return (new TypeDocumentResource($TipoDocumento))
+        $tipoDocumento->delete();
+        return (new TypeDocumentResource($tipoDocumento))
         ->additional(['msg'=>'se elimino correctamente'])
         ->response()
         ->setStatusCode(202);

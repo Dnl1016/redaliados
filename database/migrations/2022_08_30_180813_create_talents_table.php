@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('jobTittle');
             $table->string('businessName');
             $table->string('indrustyRegistration', 50);
-            $table->enum('typeTalents',['Natural','Juridico']);
-            $table->enum('educationalLevel',['Ingeniero','Tecnologo']);
+            $table->enum('typeTalents',['Natural','Juridico']) ->default('Natural');
+            $table->enum('educationalLevel',['Ingeniero','Tecnologo', 'Tecnico'])->default('Tecnologo');
             $table->text('productDescription');
             $table->string('announcement')->nullable();
 

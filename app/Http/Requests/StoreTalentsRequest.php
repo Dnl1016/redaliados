@@ -27,10 +27,10 @@ class StoreTalentsRequest extends FormRequest
             "jobTittle" =>'required',
             "businessName"=>'required',
             "indrustyRegistration"=> 'required',
-            "typeTalent"=>'required',
+            "typeTalents"=>'required',
             "educationalLevel"=> 'required',
             "productDescription"=> 'required',
-
+            "people_id"=> 'required'
         ];
     }
 }

@@ -23,7 +23,7 @@ class Idea extends Model
     }
     public function talents ()
     {
-        return $this->hasMany(Talent::class);
+        return $this->hasMany(Talent::class); //Relationship One To Many
     }
 
 
