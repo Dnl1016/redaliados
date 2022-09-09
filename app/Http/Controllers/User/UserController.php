@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\User;
 
-use App\Http\Requests\StorePeopleRequest;
-use App\Http\Requests\UpdatePeopleRequest;
-use App\Models\People;
-use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Models\User;
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\PeopleResource;
+use App\Http\Resources\UserResource;
 
-class PeopleController extends Controller
+class UserController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +19,9 @@ class PeopleController extends Controller
      */
     public function index()
     {
-        // return People::all();
-        return PeopleResource::collection(People::all());
+        // return User::all();
+        return UserResource::collection(User::all());
+      
     }
 
     /**
@@ -29,15 +30,15 @@ class PeopleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePeopleRequest $request)
+    public function store(StoreUserRequest $request)
     {
         
         // return response()->json([
         //     'res'=>true,
-        //     'msg'=>'La persona quedo guardada correctamente'
+        //     'msg'=>'La usuario quedo guardada correctamente'
         // ],200);
 
-        return (new PeopleResource(People::create($request->all())))
+        return (new (User::create($request->all())))
         ->additional(['msg'=>'se guardo correctamente'])
         ->response()
         ->setStatusCode(202);
@@ -49,9 +50,9 @@ class PeopleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(People $persona)
+    public function show(User $usuario)
     {
-        return new PeopleResource($persona);
+        return new ($usuario);
     }
 
     /**
@@ -61,11 +62,11 @@ class PeopleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePeopleRequest $request, People $persona)
+    public function update(UpdateUserRequest $request, User $usuario)
     {
        
-        $persona->update($request->validated());
-        return (new PeopleResource($persona))
+        $usuario->update($request->validated());
+        return (new ($usuario))
         ->additional(['msg'=>'se actualizo correctamente'])
         ->response()
         ->setStatusCode(202);
@@ -77,10 +78,10 @@ class PeopleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy( People  $persona)
+    public function destroy( User  $usuario)
     {
-        $persona->delete();
-        return (new PeopleResource($persona))
+        $usuario->delete();
+        return (new ($usuario))
         ->additional(['msg'=>'se elimino correctamente'])
         ->response()
         ->setStatusCode(202);

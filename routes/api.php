@@ -2,10 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use  App\Http\Controllers\Api\PeopleController;
-use  App\Http\Controllers\Api\TypeDocumentController;
-use  App\Http\Controllers\Api\TalentController;
-use  App\Http\Controllers\Api\CompanyController;
+use  App\Http\Controllers\People\PeopleController;
+use  App\Http\Controllers\TypeDocument\TypeDocumentController;
+use  App\Http\Controllers\Talent\TalentController;
+use  App\Http\Controllers\Company\CompanyController;
+use  App\Http\Controllers\User\UserController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +25,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //usuarios
-Route::apiResource('usuarios', UserController::class);
+// Route::apiResource('usuarios', UserController::class);
+Route::get('usuarios', [UserController::class, 'index']);
+
+Route::get('usuario/{usuario}', [User\UserController::class, 'show']);
+
+Route::post('usuario', [User\UserController::class, 'store']);
+
+Route::put('usuario/{usuario}', [User\UserController::class, 'update']);
+
+Route::delete('usuario/{usuario}', [User\UserController::class, 'destroy']);
 
 //personas
 
@@ -70,13 +81,13 @@ Route::delete('talento/{talento}', [TalentController::class, 'destroy']);
 //Compañia
 Route::get('compañias', [CompanyController::class, 'index']);
 
-Route::post('TipoDocumento', [TypeDocumentController::class, 'store']);
+Route::post('compañia', [CompanyController::class, 'store']);
 
-Route::get('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'show']);
+Route::get('compañia/{compañia}', [CompanyController::class, 'show']);
 
-Route::put('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'update']);
+Route::put('compañia/{compañia}', [CompanyController::class, 'update']);
 
-Route::delete('TipoDocumento/{TipoDocumento}', [TypeDocumentController::class, 'destroy']);
+Route::delete('compañia/{compañia}', [CompanyController::class, 'destroy']);
 
 
 

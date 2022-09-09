@@ -13,6 +13,15 @@ class TypeDocument extends Model
     protected $fillable = [
         'name'
     ];
+    
+    public function setNameAttribute($valor)
+    {
+        $this->attributes['name'] = strtolower($valor);
+    }
+    public function getNameAttribute($valor)
+    {
+        return mb_strtoupper($valor);
+    }
 
    
     protected $table = 'typeDocuments';

@@ -27,7 +27,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nick',
+        'name',
         'email',
         'password',
         'verified',
@@ -38,6 +38,22 @@ class User extends Authenticatable
         
     ];
 
+    public function setNameAttribute($valor)
+    {
+        $this->attributes['name'] = strtoupper($valor);
+    }
+    public function getNameAttribute($valor)
+    {
+        return mb_strtoupper($valor);
+    }
+
+
+    public function setEmailAttribute($valor)
+    {
+        $this->attributes['email'] = strtolower($valor);
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -47,6 +63,10 @@ class User extends Authenticatable
         'password',
         'verification_token',
         'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 
 
@@ -64,7 +84,7 @@ class User extends Authenticatable
         return Str::random(40);
     }
 
-    protected $table = 'people';
+    protected $table = 'users';
 
     public function people()
     {

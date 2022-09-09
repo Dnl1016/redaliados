@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Talents>
  */
-class TalentsFactory extends Factory
+class TalentFactory extends Factory
 {
     protected $model = Talent::class;
     /**
@@ -19,12 +19,12 @@ class TalentsFactory extends Factory
     public function definition()
     {
         return [
-            'jobTittle'=> fake()->jobTittle,
-            'businessName'=> fake()->businessName,
-            'indrustyRegistration'=> fake()->businessName,
+            'jobTittle'=> fake()->jobTitle,
+            'businessName'=> fake()->company  ,
+            'indrustyRegistration'=> fake()->randomNumber($nbDigits = NULL, $strict = false),
             'typeTalents'=>fake()->randomElement(['Natural', 'Juridico']),
             'educationalLevel'=> fake()->randomElement(['Ingeniero', 'Tecnologo', 'Tecnico', 'Bachiller']),
-            'productDescription'=>fake()->productDescription,
+            'productDescription'=>fake()->text($maxNbChars = 200),
             'people_id'=>  function(){
                 return People::all()->random();
             }

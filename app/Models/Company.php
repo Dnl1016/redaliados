@@ -23,9 +23,17 @@ class Company extends Model
         'commercialRegister',
         'talents_id',
     ];
-
+    public function setTradeNameAttribute($valor)
+    {
+        $this->attributes['tradename'] = strtolower($valor);
+    }
+    public function getTradeNameAttribute($valor)
+    {
+        return mb_strtoupper($valor);
+    }
 
     protected $table = 'companies';
+    public $timestamps = false;
 
     public function talents()
         {

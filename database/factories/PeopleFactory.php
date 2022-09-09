@@ -22,9 +22,12 @@ class PeopleFactory extends Factory
         return [
             "name"=> fake()->name(),
             "email"=> fake()->unique()->safeEmail,
-            "document"=> fake()->unique(),
+            "document"=> fake()->unique()->randomNumber($nbDigits = NULL, $strict = false),
             "phone"=> fake()->phoneNumber(),
-            "typeDocument_id" => 'factory:App\Models\People;',
+            "typeDocument_id" => function ()
+            {
+                return  TypeDocument::all()->random()->id;
+            }
         ];
     }
 }

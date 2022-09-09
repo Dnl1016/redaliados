@@ -22,6 +22,14 @@ class Talent extends Model
         'announcement',
         
     ];
+    public function setJobTittleAttribute($valor)
+    {
+        $this->attributes['jobTittle'] = strtolower($valor);
+    }
+    public function getNameAttribute($valor)
+    {
+        return mb_strtoupper($valor);
+    }
 
     public $timestamps = false;
 

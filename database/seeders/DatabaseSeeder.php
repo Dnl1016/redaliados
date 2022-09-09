@@ -30,24 +30,29 @@ class DatabaseSeeder extends Seeder
     {
         //\App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
+        
         // ]);
-        $this->call(TypeDocumentSeeder::class);
-        $this->call(PeopleSeeder::class);
-        $this->call(TalentSeeder::class);
-        $this->call(CompanySeeder::class);
+        // $this->call(TypeDocumentSeeder::class);
+        // $this->call(PeopleSeeder::class);
+        // $this->call(TalentSeeder::class);
+        // $this->call(CompanySeeder::class);
      
         TypeDocument::factory(10)->create();
+        Ally::factory(10)->create();
         //Status::factory(3)->create();
         // Ally::factory(10)->create();
         //People::factory(10)->create();
     
-        // People::factory()
-        //     ->count(50)
-        //     ->hasdocumentType(1)
-        //     ->create();
+        People::factory(10)->create()->each(function ($people){
+            User::factory()->create([
+                'people_id' => $people->id
+
+            ])->each(function($talent){
+                Talent::factory(5)->create([
+                    'people_id'=>$talent->id
+                ]);
+            });
+        });
 
         
 

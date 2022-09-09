@@ -24,7 +24,16 @@ class UpdateCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "tradename"=> 'required',
+            "address"=> 'required',
+            "phone"=> 'required',
+            // "taxRegime"=> ['required','min:8','max:100'],
+            // "mainActivity"=> ['required','max:100'],
+            // "legalRegistration"=> ['required','max:100'],
+            // "legalNature"=> ['required','max:100'],
+            // "taxRegistration"=> ['required','max:100'],
+            // "representativeDocument"=> ['required','max:100'],
+            // "commercialRegister"=> ['required','max:100'],
         ];
     }
 }

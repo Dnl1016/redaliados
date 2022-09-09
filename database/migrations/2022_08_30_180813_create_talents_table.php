@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('businessName');
             $table->string('indrustyRegistration', 50);
             $table->enum('typeTalents',['Natural','Juridico']) ->default('Natural');
-            $table->enum('educationalLevel',['Ingeniero','Tecnologo', 'Tecnico'])->default('Tecnologo');
+            $table->enum('educationalLevel',['Ingeniero','Tecnologo', 'Tecnico', 'Bachiller'])->default('Tecnologo');
             $table->text('productDescription');
             $table->string('announcement')->nullable();
 

@@ -21,13 +21,13 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'nick' => fake()->name(),
+            'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+           // 'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             'verified'=> $verificado= fake()->randomElement([User::USUARIO_VERIFICADO, User::USUARIO_NO_VERIFICADO]),
-            'verificacion_token' =>$verificado == User::USUARIO_VERIFICADO? null: User::generarVerificationToken(),
+           // 'verificacion_token' =>$verificado == User::USUARIO_VERIFICADO? null: User::generarVerificationToken(),
             'admin'=> fake()->randomElement([User::USUARIO_ADMINISTRADOR, User::USUARIO_REGULAR]),
             'status' => fake()->randomElement(['available', 'unavailable']),
             'people_id' => function(){

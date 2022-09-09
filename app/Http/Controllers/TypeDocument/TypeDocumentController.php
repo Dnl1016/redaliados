@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\TypeDocument;
 
 use App\Http\Requests\StoreTypeDocumentRequest;
 use App\Http\Resources\CompanyResource;
 use App\Models\TypeDocument;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\TypeDocumentResource;
 
-class TypeDocumentController extends Controller
+class TypeDocumentController extends ApiController
 {
     /**
      * Display a listing of the resource.

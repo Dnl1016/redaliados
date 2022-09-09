@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Talent;
 
 use App\Http\Requests\StoreTalentsRequest;
 use App\Http\Requests\UpdateTalentsRequest;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Models\Talent;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\TalentResource;
 
-class TalentController extends Controller
+class TalentController extends ApiController
 {
     /**
      * Display a listing of the resource.

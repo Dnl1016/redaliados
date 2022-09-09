@@ -11,9 +11,17 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        
+        'name',  
     ];
+
+    public function setNameAttribute($valor)
+    {
+        $this->attributes['name'] = strtolower($valor);
+    }
+    public function getNameAttribute($valor)
+    {
+        return mb_strtoupper($valor);
+    }
     
     public function skills()
     {

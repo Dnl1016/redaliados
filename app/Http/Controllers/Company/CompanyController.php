@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Company;
 
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Company;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\CompanyResource;
 
-
-class CompanyController extends Controller
+class CompanyController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -20,6 +19,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
+        // return People::all();
         return CompanyResource::collection(Company::all());
     }
 
@@ -31,16 +31,16 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        Company::create($request->all());
-        return response()->json([
-                'res'=>true,
-                'msg'=>'Quedo guardada correctamente'
-            ],200);
+        
+        // return response()->json([
+        //     'res'=>true,
+        //     'msg'=>'La compañia quedo guardada correctamente'
+        // ],200);
 
-        // return (new PeopleResource(People::create($request->all())))
-        // ->additional(['msg'=>'se guardo correctamente'])
-        // ->response()
-        // ->setStatusCode(202);
+        return (new CompanyResource(Company::create($request->all())))
+        ->additional(['msg'=>'se guardo correctamente'])
+        ->response()
+        ->setStatusCode(202);
     }
 
     /**
@@ -49,9 +49,9 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Company $compañia)
     {
-        //
+        return new CompanyResource($compañia);
     }
 
     /**
@@ -61,9 +61,14 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCompanyRequest $request, Company $compañia)
     {
-        //
+       
+        $compañia->update($request->validated());
+        return (new CompanyResource($compañia))
+        ->additional(['msg'=>'se actualizo correctamente'])
+        ->response()
+        ->setStatusCode(202);
     }
 
     /**
@@ -72,8 +77,12 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( Company  $compañia)
     {
-        //
+        $compañia->delete();
+        return (new CompanyResource($compañia))
+        ->additional(['msg'=>'se elimino correctamente'])
+        ->response()
+        ->setStatusCode(202);
     }
 }

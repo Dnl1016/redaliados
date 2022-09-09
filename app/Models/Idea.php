@@ -15,6 +15,14 @@ class Idea extends Model
         'name',
         'description',
     ];
+    public function setNameAttribute($valor)
+    {
+        $this->attributes['name'] = strtolower($valor);
+    }
+    public function getNameAttribute($valor)
+    {
+        return mb_strtoupper($valor);
+    }
 
     public function projects()
     {

@@ -20,6 +20,14 @@ class Project extends Model
         'status_id',
         'ideas_id',
     ];
+    public function setNameAttribute($valor)
+    {
+        $this->attributes['name'] = strtolower($valor);
+    }
+    public function getNameAttribute($valor)
+    {
+        return mb_strtoupper($valor);
+    }
 
     public function status()
     {

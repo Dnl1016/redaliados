@@ -25,9 +25,9 @@ class AllyFactory extends Factory
             'status' => fake()->randomElement(['activo', 'inactivo']),
             "phone"=> fake()->phoneNumber,
             "address"=>fake()->address,
-            "nodeName" =>fake()->nodeName,
+            "nodeName" =>fake()->name(),
             "region" =>fake()->state,
-            "formatiionCenter"=>fake()->formatiionCenter,
+            "formationCenter"=>fake()-> name(),
         ];
     }
 }
