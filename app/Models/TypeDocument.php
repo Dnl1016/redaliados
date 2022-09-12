@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Models\People;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TypeDocument extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     
     protected $fillable = [
         'name'
@@ -23,7 +24,8 @@ class TypeDocument extends Model
         return mb_strtoupper($valor);
     }
 
-   
+
+    protected $dates=['deleted_at'];
     protected $table = 'typeDocuments';
     public $timestamps = false;
 

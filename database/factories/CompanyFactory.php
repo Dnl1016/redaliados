@@ -19,16 +19,16 @@ class CompanyFactory extends Factory
     public function definition()
     {
         return [
-            "tradename"=> fake()->name(),
-            "address'"=> fake()->address(),
-            "phone"=> fake()->phone,
-            "taxRegime"=>fake()->taxRegime,
-            "mainActivity" =>fake()->mainActivity,
-            "legalRegistration" =>fake()->legalRegistration,
-            "legalNature"=>fake()->legalNature,
-            "taxRegistration"=>fake()->taxRegistration,
-            "representativeDocument"=>fake()->representativeDocument,
-            "commercialRegister"=>fake()->commercialRegister,
+            "tradename"=> fake()->catchPhrase,
+            "address"=> fake()->address(),
+            "phone"=> fake()->e164PhoneNumber,
+            "taxRegime"=>fake()->realText,
+            "mainActivity" =>fake()->realText,
+            "legalRegistration" =>fake()->name(),
+            "legalNature"=>fake()->name(),
+            "taxRegistration"=>fake()->realText,
+            "representativeDocument"=>fake()->realText,
+            "commercialRegister"=>fake()->swiftBicNumber,
             
         ];
     }

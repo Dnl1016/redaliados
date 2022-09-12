@@ -5,11 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Project;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Status extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     public $timestamps = false;
+    protected $dates=['deleted_at'];
     protected $table = 'status';
+    
 
     protected $fillable = [
         'name',

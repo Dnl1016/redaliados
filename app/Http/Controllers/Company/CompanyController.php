@@ -19,8 +19,9 @@ class CompanyController extends ApiController
      */
     public function index()
     {
-        // return People::all();
-        return CompanyResource::collection(Company::all());
+        $compañia= Company::all();
+
+        return $this->showAll($compañia);
     }
 
     /**

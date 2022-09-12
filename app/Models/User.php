@@ -2,24 +2,27 @@
 
 namespace App\Models;
 
+
 use App\Models\Ally;
 use App\Models\People;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
+use App\Models\User\UserController;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use  HasFactory, Notifiable, SoftDeletes;
 
     const USUARIO_VERIFICADO = "1";
     const USUARIO_NO_VERIFICADO = "0";
 
     const USUARIO_ADMINISTRADOR = "true";
     const USUARIO_REGULAR = "false";
+
 
     /**
      * The attributes that are mass assignable.
@@ -85,6 +88,7 @@ class User extends Authenticatable
     }
 
     protected $table = 'users';
+    protected $dates=['deleted_at'];
 
     public function people()
     {

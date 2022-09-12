@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Line;
 
+use App\Http\Controllers\Controller;
 use App\Models\Line;
-use App\Http\Requests\StoreLineRequest;
-use App\Http\Requests\UpdateLineRequest;
+use Illuminate\Http\Request;
 
 class LineController extends Controller
 {
@@ -15,7 +15,9 @@ class LineController extends Controller
      */
     public function index()
     {
-        //
+        $linea= Line::all();
+
+        return $this->showAll($linea);
     }
 
     /**
@@ -25,18 +27,18 @@ class LineController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreLineRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLineRequest $request)
+    public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -45,9 +47,9 @@ class LineController extends Controller
      * @param  \App\Models\Line  $line
      * @return \Illuminate\Http\Response
      */
-    public function show(Line $line)
+    public function show(Line $linea)
     {
-        //
+        return $this->showOne($linea);
     }
 
     /**
@@ -64,11 +66,11 @@ class LineController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateLineRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Line  $line
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLineRequest $request, Line $line)
+    public function update(Request $request, Line $line)
     {
         //
     }

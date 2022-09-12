@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('verification_token')->nullable();
             $table->string('status')->default('unavailable');
             $table->timestamps();
+            $table->softDeletes();
+
             
 
 

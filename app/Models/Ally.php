@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Line;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ally extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
     public $timestamps = false;
+    protected $dates=['deleted_at'];
 
     protected $fillable = [
         'name',

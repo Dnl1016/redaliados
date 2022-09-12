@@ -28,13 +28,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::apiResource('usuarios', UserController::class);
 Route::get('usuarios', [UserController::class, 'index']);
 
-Route::get('usuario/{usuario}', [User\UserController::class, 'show']);
+Route::get('usuario/{usuario}', [UserController::class, 'show']);
 
-Route::post('usuario', [User\UserController::class, 'store']);
+Route::post('usuario', [UserController::class, 'store']);
 
-Route::put('usuario/{usuario}', [User\UserController::class, 'update']);
+Route::put('usuario/{usuario}', [UserController::class, 'update']);
 
-Route::delete('usuario/{usuario}', [User\UserController::class, 'destroy']);
+Route::delete('usuario/{usuario}', [UserController::class, 'destroy']);
 
 //personas
 

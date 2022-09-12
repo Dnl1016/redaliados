@@ -20,8 +20,8 @@ class TalentFactory extends Factory
     {
         return [
             'jobTittle'=> fake()->jobTitle,
-            'businessName'=> fake()->company  ,
-            'indrustyRegistration'=> fake()->randomNumber($nbDigits = NULL, $strict = false),
+            'businessName'=> fake()->bs,
+            'indrustyRegistration'=> fake()->swiftBicNumber,
             'typeTalents'=>fake()->randomElement(['Natural', 'Juridico']),
             'educationalLevel'=> fake()->randomElement(['Ingeniero', 'Tecnologo', 'Tecnico', 'Bachiller']),
             'productDescription'=>fake()->text($maxNbChars = 200),

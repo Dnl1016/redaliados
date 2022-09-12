@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Status;
 use App\Models\Idea;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -20,6 +21,10 @@ class Project extends Model
         'status_id',
         'ideas_id',
     ];
+
+    public $timestamps = false;
+    protected $dates=['deleted_at'];
+
     public function setNameAttribute($valor)
     {
         $this->attributes['name'] = strtolower($valor);

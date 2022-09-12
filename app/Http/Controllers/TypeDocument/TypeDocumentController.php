@@ -19,8 +19,8 @@ class TypeDocumentController extends ApiController
      */
     public function index()
     {
-        //return TypeDocument::all();
-        return TypeDocumentResource::collection(TypeDocument::all());
+        $tipoDocumento= TypeDocument::all();
+        return $this->showAll($tipoDocumento);
     }
 
     /**
@@ -29,18 +29,16 @@ class TypeDocumentController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTypeDocumentRequest $request)
+    public function store(Request $request)
     {
-        // TypeDocument::create($request->all());
-        // return response()->json([
-        //         'res'=>true,
-        //         'msg'=>'Quedo guardada correctamente'
-        //     ],200);
+        $rules = [
+            'name' => 'required', 
+        ];
 
-            return (new TypeDocumentResource(TypeDocument::create($request->all())))
-            ->additional(['msg'=>'se guardo correctamente'])
-            ->response()
-            ->setStatusCode(202);
+        $this->validate($request, $rules);
+        $tipoDocumento = TypeDocument::create($request->all());
+        return $this->showOne($tipoDocumento, 201);
+    
     }
 
     /**
@@ -51,7 +49,7 @@ class TypeDocumentController extends ApiController
      */
     public function show(TypeDocument $tipoDocumento)
     {
-        return new TypeDocumentResource($tipoDocumento);
+        return $this->showOne($tipoDocumento);
     }
 
     /**
@@ -63,12 +61,17 @@ class TypeDocumentController extends ApiController
      */
     public function update(StoreTypeDocumentRequest $request, TypeDocument $tipoDocumento)
     {
-       
-        $tipoDocumento->update($request->validated());
-        return (new TypeDocumentResource($tipoDocumento))
-        ->additional(['msg'=>'se actualizo correctamente'])
-        ->response()
-        ->setStatusCode(202);
+    
+        $tipoDocumento->fill($request->only([
+            'name',  
+        ]));
+
+        if ($tipoDocumento->isClean()) {
+            return $this->errorResponse('Debe especificar al menos un valor diferente para actualizar', 422);
+        }
+
+        $tipoDocumento->save();
+        return $this->showOne($tipoDocumento);
     }
 
     /**
@@ -77,12 +80,9 @@ class TypeDocumentController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy( TypeDocument  $tipoDocumento)
+    public function destroy(TypeDocument  $tipoDocumento)
     {
         $tipoDocumento->delete();
-        return (new TypeDocumentResource($tipoDocumento))
-        ->additional(['msg'=>'se elimino correctamente'])
-        ->response()
-        ->setStatusCode(202);
+        return $this->showOne($tipoDocumento);
     }
 }

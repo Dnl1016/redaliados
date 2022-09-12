@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\People;
 use App\Models\Company;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Talent extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'jobTittle',
@@ -32,7 +33,7 @@ class Talent extends Model
     }
 
     public $timestamps = false;
-
+    protected $dates=['deleted_at'];
     protected $table = 'talents';
 
     public function people()

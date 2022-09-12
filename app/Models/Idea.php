@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Project;
 use App\Models\Talent;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Idea extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+    
+    public $timestamps = false;
+    protected $dates=['deleted_at'];
 
     protected $fillable = [
         'name',

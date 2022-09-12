@@ -19,8 +19,9 @@ class PeopleController extends  ApiController
      */
     public function index()
     {
-        // return People::all();
-        return PeopleResource::collection(People::all());
+        $persona= People::all();
+
+        return $this->showAll($persona);
     }
 
     /**
@@ -51,7 +52,8 @@ class PeopleController extends  ApiController
      */
     public function show(People $persona)
     {
-        return new PeopleResource($persona);
+        //return new PeopleResource($persona);
+        return $this->showOne($persona);
     }
 
     /**

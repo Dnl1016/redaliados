@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->softDeletes();
 
             $table->bigInteger('talents_id')->unsigned();
             $table->foreign('talents_id')->references('id')->on('talents');

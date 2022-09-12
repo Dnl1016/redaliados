@@ -19,8 +19,9 @@ class TalentController extends ApiController
      */
     public function index()
     {
-        //return Talent::all();
-        return TalentResource::collection(Talent::all());
+        $talento=Talent::all();
+
+        return $this->showAll($talento);
     }
 
     /**
@@ -29,12 +30,24 @@ class TalentController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTalentsRequest $request)
+    public function store(Request $request)
     { 
-        return (new TalentResource(Talent::create($request->all())))
-        ->additional(['msg'=>'se guardo correctamente'])
-        ->response()
-        ->setStatusCode(202);
+        $rules = [
+            "jobTittle" =>'required',
+            "businessName"=>'required',
+            "indrustyRegistration"=> 'required',
+            "typeTalents"=>'required',
+            "educationalLevel"=> 'required',
+            "productDescription"=> 'required',
+            "people_id"=> 'required'
+        ];
+
+        $this->validate($request, $rules);
+
+        $talento = Talent::create($request->all());
+
+        return $this->showOne($talento, 201);
+    
     }
 
     /**
@@ -45,7 +58,8 @@ class TalentController extends ApiController
      */
     public function show(Talent $talento)
     {
-        return new TalentResource($talento);
+        
+        return $this->showOne($talento);
     }
 
 
@@ -56,13 +70,27 @@ class TalentController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTalentsRequest $request, Talent $talento)
+    public function update(Request $request, Talent $talento)
     {
-        $talento->update($request->validated());
-        return (new TalentResource($talento))
-        ->additional(['msg'=>'se actualizo correctamente'])
-        ->response()
-        ->setStatusCode(202);
+        $talento->fill($request->only([
+            'jobTittle',
+            'people_id',
+            'businessName',
+            'indrustyRegistration',
+            'typeTalent',
+            'educationalLevel',
+            'productDescription',
+            'announcement',
+        ]));
+
+        if ($talento->isClean()) {
+            return $this->errorResponse('Debe especificar al menos un valor diferente para actualizar', 422);
+        }
+
+        $talento->save();
+
+        return $this->showOne($talento);
+    
     }
 
     /**
@@ -74,9 +102,6 @@ class TalentController extends ApiController
     public function destroy( Talent $talento)
     {
         $talento->delete();
-        return (new TalentResource($talento))
-        ->additional(['msg'=>'se elimino correctamente'])
-        ->response()
-        ->setStatusCode(202);
+        return $this->showOne($talento);
     }
 }

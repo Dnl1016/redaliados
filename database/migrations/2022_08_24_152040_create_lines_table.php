@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->softDeletes();
 
             $table->bigInteger('allies_id')->unsigned();
             $table->foreign('allies_id')->references('id')->on('allies');

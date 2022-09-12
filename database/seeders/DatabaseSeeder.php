@@ -36,7 +36,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(PeopleSeeder::class);
         // $this->call(TalentSeeder::class);
         // $this->call(CompanySeeder::class);
-     
         TypeDocument::factory(10)->create();
         Ally::factory(10)->create();
         //Status::factory(3)->create();
@@ -53,15 +52,6 @@ class DatabaseSeeder extends Seeder
                 ]);
             });
         });
-
-        
-
-        
-
-
-      
-
-
 
     }
 }

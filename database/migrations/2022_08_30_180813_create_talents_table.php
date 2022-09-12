@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('educationalLevel',['Ingeniero','Tecnologo', 'Tecnico', 'Bachiller'])->default('Tecnologo');
             $table->text('productDescription');
             $table->string('announcement')->nullable();
+            $table->softDeletes();
 
            $table->bigInteger('people_id')->unsigned();
            $table->foreign('people_id')->references('id')->on('people');

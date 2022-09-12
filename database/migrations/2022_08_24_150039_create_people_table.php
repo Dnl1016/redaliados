@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('phone', 30);
             $table->bigInteger('typeDocument_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
+            
            $table->foreign('typeDocument_id')->references('id')->on('typeDocuments');
         });
     }

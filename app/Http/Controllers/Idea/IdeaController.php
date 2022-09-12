@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Idea;
 
-use App\Models\Ally;
-use App\Http\Requests\StoreAllyRequest;
-use App\Http\Requests\UpdateAllyRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Idea;
+use Illuminate\Http\Request;
 
-class AllyController extends Controller
+class IdeaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,9 @@ class AllyController extends Controller
      */
     public function index()
     {
-        //
+        $idea= Idea::all();
+
+        return $this->showAll($idea);
     }
 
     /**
@@ -31,10 +33,10 @@ class AllyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreAllyRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAllyRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,21 +44,21 @@ class AllyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ally  $ally
+     * @param  \App\Models\Idea  $idea
      * @return \Illuminate\Http\Response
      */
-    public function show(Ally $ally)
+    public function show(Idea $idea)
     {
-        //
+        return $this->showOne($idea);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Ally  $ally
+     * @param  \App\Models\Idea  $idea
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ally $ally)
+    public function edit(Idea $idea)
     {
         //
     }
@@ -64,11 +66,11 @@ class AllyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateAllyRequest  $request
-     * @param  \App\Models\Ally  $ally
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Idea  $idea
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAllyRequest $request, Ally $ally)
+    public function update(Request $request, Idea $idea)
     {
         //
     }
@@ -76,10 +78,10 @@ class AllyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ally  $ally
+     * @param  \App\Models\Idea  $idea
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ally $ally)
+    public function destroy(Idea $idea)
     {
         //
     }

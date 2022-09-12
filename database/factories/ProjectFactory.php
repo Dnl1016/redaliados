@@ -21,8 +21,8 @@ class ProjectFactory extends Factory
     public function definition()
     {
         return [
-            "name"=> fake()->name(),
-            "description" => fake()->description,
+            "name"=> fake()->companySuffix,
+            "description" => fake()->paragraphs(),
             "starDate" => now(),
             "updateDate" => now(),
             "remissionDate"=> now(),

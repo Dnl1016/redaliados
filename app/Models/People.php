@@ -7,10 +7,11 @@ use App\Models\TypeDocument;
 use App\Models\Talent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class People extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -41,6 +42,8 @@ class People extends Model
 
 
     protected $table = 'people';
+    public $timestamps = false;
+    protected $dates=['deleted_at'];
    
 
     /**

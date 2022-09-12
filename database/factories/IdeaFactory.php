@@ -20,8 +20,8 @@ class IdeaFactory extends Factory
     public function definition()
     {
         return [
-            "name" => fake()->name(),
-            "description" => fake()->description,
+            "name" => fake()->catchPhrase,
+            "description" => fake()->paragraph(),
             "talents_id"=> function(){
                 return Talent::all()->random();
             }

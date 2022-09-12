@@ -19,7 +19,7 @@ class StudyFactory extends Factory
     {
         return [
             "name" => fake()->name(),
-            "description" => fake()->description,  
+            "description" => fake()->realText($maxNbChars = 200, $indexSize = 2),  
         ];
     }
 }

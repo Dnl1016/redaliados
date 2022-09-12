@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Skill;
 
+use App\Http\Controllers\Controller;
 use App\Models\Skill;
-use App\Http\Requests\StoreSkillRequest;
-use App\Http\Requests\UpdateSkillRequest;
+use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
@@ -15,26 +15,19 @@ class SkillController extends Controller
      */
     public function index()
     {
-        //
+        $skill= Skill::all();
+
+        return $this->showAll($skill);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSkillRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSkillRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -47,7 +40,7 @@ class SkillController extends Controller
      */
     public function show(Skill $skill)
     {
-        //
+        return $this->showOne($skill);
     }
 
     /**
@@ -64,11 +57,11 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSkillRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSkillRequest $request, Skill $skill)
+    public function update(Request $request, Skill $skill)
     {
         //
     }

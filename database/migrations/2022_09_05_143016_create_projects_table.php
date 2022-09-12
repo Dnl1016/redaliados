@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('starDate');
             $table->date('updateDate');
             $table->date('remissionDate');
+            $table->softDeletes();
 
             $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('status');

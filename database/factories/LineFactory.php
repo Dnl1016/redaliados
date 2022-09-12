@@ -20,8 +20,8 @@ class LineFactory extends Factory
     public function definition()
     {
         return [
-            "name" => fake()->name(),
-            "description" => fake()->description,
+            "name" => fake()->catchPhrase,
+            "description" => fake()->paragraphs(),
             "talents_id"=> function(){
                 return Ally::all()->random();
             }

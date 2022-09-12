@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('taxRegistration')->nullable();
             $table->string('representativeDocument')->nullable();
             $table->string('commercialRegister')->nullable();
+            $table->softDeletes();
 
            $table->bigInteger('talents_id')->unsigned();
            $table->foreign('talents_id')->references('id')->on('talents');

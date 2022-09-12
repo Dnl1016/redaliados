@@ -22,7 +22,8 @@ return new class extends Migration
             $table->text('address');
             $table->string('nodeName');
             $table->string('region', 50);
-            $table->string('formationCenter', 50);            
+            $table->string('formationCenter', 50);
+            $table->softDeletes();            
         });
     }
 
