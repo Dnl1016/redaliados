@@ -64,8 +64,4 @@ class People extends Model
         return $this->hasOne(Talent::class);  // Relationship one to one 
     }
 
-
-
-    
-
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\PeopleSeeder;
 use App\Models\User;
 use App\Models\Ally;
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\Idea;
 use App\Models\Line;
@@ -37,10 +38,10 @@ class DatabaseSeeder extends Seeder
         // $this->call(TalentSeeder::class);
         // $this->call(CompanySeeder::class);
         TypeDocument::factory(10)->create();
+        Status::factory(10)->create();
+        Category::factory(10)->create();
         Ally::factory(10)->create();
-        //Status::factory(3)->create();
-        // Ally::factory(10)->create();
-        //People::factory(10)->create();
+      
     
         People::factory(10)->create()->each(function ($people){
             User::factory()->create([
@@ -49,6 +50,9 @@ class DatabaseSeeder extends Seeder
             ])->each(function($talent){
                 Talent::factory(5)->create([
                     'people_id'=>$talent->id
+                ]);
+                Company::factory(5)->create([
+                    'talents_id'=>$talent->id
                 ]);
             });
         });

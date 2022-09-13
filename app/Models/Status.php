@@ -17,7 +17,7 @@ class Status extends Model
 
     protected $fillable = [
         'name',
-        'description',
+        'description'
     ];
     public function setNameAttribute($valor)
     {

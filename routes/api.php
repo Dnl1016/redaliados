@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\People\PeopleController;
+use  App\Http\Controllers\Talent\TalentPeopleController;
 use  App\Http\Controllers\TypeDocument\TypeDocumentController;
 use  App\Http\Controllers\Talent\TalentController;
 use  App\Http\Controllers\Company\CompanyController;
@@ -11,6 +12,9 @@ use  App\Http\Controllers\Skill\SkillController;
 use  App\Http\Controllers\Status\StatusController;
 use  App\Http\Controllers\Project\ProjectController;
 use  App\Http\Controllers\Line\LineController;
+use  App\Http\Controllers\Category\CategoryController;
+use  App\Http\Controllers\Idea\IdeaController;
+use  App\Http\Controllers\Ally\AllyController;
 use App\Models\User;
 
 /*
@@ -53,6 +57,8 @@ Route::post('persona', [PeopleController::class, 'store']);
 Route::put('persona/{persona}', [PeopleController::class, 'update']);
 
 Route::delete('persona/{persona}', [PeopleController::class, 'destroy']);
+
+Route::resource('talento.persona', TalentPeopleController::class)->only(['index']);
 
 
 //tipo documento

@@ -1,15 +1,15 @@
 <?php
 
 namespace Database\Factories;
-use App\Models\Study;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Study>
  */
-class StudyFactory extends Factory
+class CategoryFactory extends Factory
 {
-    protected $model = Study::class;
+    protected $model = Category::class;
     /**
      * Define the model's default state.
      *
@@ -18,8 +18,8 @@ class StudyFactory extends Factory
     public function definition()
     {
         return [
-            "name" => fake()->name(),
-            "description" => fake()->realText($maxNbChars = 200, $indexSize = 2),  
+            "name" => fake()->catchPhrase,
+             
         ];
     }
 }

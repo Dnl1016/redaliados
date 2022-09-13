@@ -18,8 +18,8 @@ class StatusFactory extends Factory
     public function definition()
     {
         return [
-            "name" => fake()->suffix,
-            "description" => fake()->paragraphs()
+            'name' => fake()->catchPhrase,
+            'description' => fake()->catchPhrase
         ];
     }
 }
