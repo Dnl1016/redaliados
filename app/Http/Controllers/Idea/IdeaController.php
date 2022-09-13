@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Idea;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Models\Idea;
 use Illuminate\Http\Request;
 
-class IdeaController extends Controller
+class IdeaController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -21,16 +21,6 @@ class IdeaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,7 +28,16 @@ class IdeaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'description' => 'required',
+        ];
+
+        $this->validate($request, $rules);
+
+        $idea = Idea::create($request->all());
+
+        return $this->showOne($idea, 201);
     }
 
     /**
@@ -53,17 +52,6 @@ class IdeaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Idea  $idea
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Idea $idea)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -72,7 +60,18 @@ class IdeaController extends Controller
      */
     public function update(Request $request, Idea $idea)
     {
-        //
+        $idea->fill($request->only([
+            'name',
+            'description',
+        ]));
+
+        if ($idea->isClean()) {
+            return $this->errorResponse('Debe especificar al menos un valor diferente para actualizar', 422);
+        }
+
+        $idea->save();
+
+        return $this->showOne($idea);
     }
 
     /**
@@ -83,6 +82,8 @@ class IdeaController extends Controller
      */
     public function destroy(Idea $idea)
     {
-        //
+        $idea->delete();
+
+        return $this->showOne($idea);
     }
 }

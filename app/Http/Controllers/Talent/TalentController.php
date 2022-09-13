@@ -39,7 +39,6 @@ class TalentController extends ApiController
             "typeTalents"=>'required',
             "educationalLevel"=> 'required',
             "productDescription"=> 'required',
-            "people_id"=> 'required'
         ];
 
         $this->validate($request, $rules);
@@ -74,7 +73,6 @@ class TalentController extends ApiController
     {
         $talento->fill($request->only([
             'jobTittle',
-            'people_id',
             'businessName',
             'indrustyRegistration',
             'typeTalent',

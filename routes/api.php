@@ -7,6 +7,10 @@ use  App\Http\Controllers\TypeDocument\TypeDocumentController;
 use  App\Http\Controllers\Talent\TalentController;
 use  App\Http\Controllers\Company\CompanyController;
 use  App\Http\Controllers\User\UserController;
+use  App\Http\Controllers\Skill\SkillController;
+use  App\Http\Controllers\Status\StatusController;
+use  App\Http\Controllers\Project\ProjectController;
+use  App\Http\Controllers\Line\LineController;
 use App\Models\User;
 
 /*
@@ -89,6 +93,81 @@ Route::put('compañia/{compañia}', [CompanyController::class, 'update']);
 
 Route::delete('compañia/{compañia}', [CompanyController::class, 'destroy']);
 
+//Estado
+Route::get('estados', [StatusController::class, 'index']);
+
+Route::post('estado', [StatusController::class, 'store']);
+
+Route::get('estado/{estado}', [StatusController::class, 'show']);
+
+Route::put('estado/{estado}', [StatusController::class, 'update']);
+
+Route::delete('estado/{estado}', [StatusController::class, 'destroy']);
+
+//skill
+Route::get('skills', [SkillController::class, 'index']);
+
+Route::post('skill', [SkillController::class, 'store']);
+
+Route::get('skill/{skill}', [SkillController::class, 'show']);
+
+Route::put('skill/{skill}', [SkillController::class, 'update']);
+
+Route::delete('skill/{skill}', [SkillController::class, 'destroy']);
+
+//proyecto
+Route::get('proyectos', [ProjectController::class, 'index']);
+
+Route::post('proyecto', [ProjectController::class, 'store']);
+
+Route::get('proyecto/{proyecto}', [ProjectController::class, 'show']);
+
+Route::put('proyecto/{proyecto}', [ProjectController::class, 'update']);
+
+Route::delete('proyecto/{proyecto}', [ProjectController::class, 'destroy']);
 
 
 
+//linea
+Route::get('lineas', [LineController::class, 'index']);
+
+Route::post('linea', [LineController::class, 'store']);
+
+Route::get('linea/{linea}', [LineController::class, 'show']);
+
+Route::put('linea/{linea}', [LineController::class, 'update']);
+
+Route::delete('linea/{linea}', [LineController::class, 'destroy']);
+
+//idea
+Route::get('ideas', [IdeaController::class, 'index']);
+
+Route::post('idea', [IdeaController::class, 'store']);
+
+Route::get('idea/{idea}', [IdeaController::class, 'show']);
+
+Route::put('idea/{idea}', [IdeaController::class, 'update']);
+
+Route::delete('idea/{idea}', [IdeaController::class, 'destroy']);
+
+//categoria
+Route::get('categorias', [CategoryController::class, 'index']);
+
+Route::post('categoria', [CategoryController::class, 'store']);
+
+Route::get('categoria/{categoria}', [CategoryController::class, 'show']);
+
+Route::put('categoria/{categoria}', [CategoryController::class, 'update']);
+
+Route::delete('categoria/{categoria}', [CategoryController::class, 'destroy']);
+
+//aliado
+Route::get('aliados', [AllyController::class, 'index']);
+
+Route::post('aliado', [AllyController::class, 'store']);
+
+Route::get('aliado/{aliado}', [AllyController::class, 'show']);
+
+Route::put('aliado/{aliado}', [AllyController::class, 'update']);
+
+Route::delete('aliado/{aliado}', [AllyController::class, 'destroy']);

@@ -14,6 +14,7 @@ class Line extends Model
     protected $fillable = [
         'name',
         'description',
+        'allies_id'
     ];
 
     public $timestamps = false;

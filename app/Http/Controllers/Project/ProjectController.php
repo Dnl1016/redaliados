@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Project;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class ProjectController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -20,15 +20,7 @@ class ProjectController extends Controller
         return $this->showAll($proyecto);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+   
 
     /**
      * Store a newly created resource in storage.
@@ -38,7 +30,19 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'description'=> 'required',
+            'starDate'=> 'required',
+            'updateDate' => 'required',
+            'remissionDate'=> 'required', 
+        ];
+
+        $this->validate($request, $rules);
+
+        $proyecto = Project::create($request->all());
+
+        return $this->showOne($proyecto, 201);
     }
 
     /**
@@ -47,21 +51,12 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Project $proyecto)
     {
-        //
+        return $this->showOne($proyecto);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Project $project)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -70,9 +65,23 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Project $proyecto)
     {
-        //
+        $proyecto->fill($request->only([
+            'name',
+            'description',
+            'starDate',
+            'updateDate',
+            'remissionDate'
+        ]));
+
+        if ($proyecto->isClean()) {
+            return $this->errorResponse('Debe especificar al menos un valor diferente para actualizar', 422);
+        }
+
+        $proyecto->save();
+
+        return $this->showOne($proyecto);
     }
 
     /**
@@ -81,8 +90,10 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(Project $proyecto)
     {
-        //
+        $proyecto->delete();
+
+        return $this->showOne($proyecto);
     }
 }

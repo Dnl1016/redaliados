@@ -24,7 +24,7 @@ class Ally extends Model
         'nodeName',
         'region',
         'formatiionCenter',
-        'lines_id',   
+           
     ];
 
     public function setNameAttribute($valor)

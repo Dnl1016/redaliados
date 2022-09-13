@@ -18,6 +18,7 @@ class Idea extends Model
     protected $fillable = [
         'name',
         'description',
+        'talents_id',
     ];
     public function setNameAttribute($valor)
     {

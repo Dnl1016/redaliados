@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Skill;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 
-class SkillController extends Controller
+class SkillController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -29,7 +29,16 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'description' => 'required',
+        ];
+
+        $this->validate($request, $rules);
+
+        $skill = Skill::create($request->all());
+
+        return $this->showOne($skill, 201);
     }
 
     /**
@@ -43,16 +52,7 @@ class SkillController extends Controller
         return $this->showOne($skill);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Skill  $skill
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Skill $skill)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -63,7 +63,18 @@ class SkillController extends Controller
      */
     public function update(Request $request, Skill $skill)
     {
-        //
+        $skill->fill($request->only([
+            'name',
+            'description',
+        ]));
+
+        if ($skill->isClean()) {
+            return $this->errorResponse('Debe especificar al menos un valor diferente para actualizar', 422);
+        }
+
+        $skill->save();
+
+        return $this->showOne($skill);
     }
 
     /**
@@ -74,6 +85,8 @@ class SkillController extends Controller
      */
     public function destroy(Skill $skill)
     {
-        //
+        $skill->delete();
+
+        return $this->showOne($skill);
     }
 }

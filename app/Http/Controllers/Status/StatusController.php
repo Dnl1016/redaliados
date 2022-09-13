@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Status;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Models\Status;
 use Illuminate\Http\Request;
 
-class StatusController extends Controller
+class StatusController extends ApiController
 {
     /**
      * Display a listing of the resource.

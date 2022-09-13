@@ -30,18 +30,21 @@ class PeopleController extends  ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePeopleRequest $request)
+    public function store(Request $request)
     {
         
-        // return response()->json([
-        //     'res'=>true,
-        //     'msg'=>'La persona quedo guardada correctamente'
-        // ],200);
+        $rules = [
+            "name"=> ['required','max:100'],
+            "email"=> ['required',  'max:255'],
+            "document"=> ['required','unique:people','min:1','max:300'],
+            "phone"=> ['required','min:8','max:100'], 
+        ];
 
-        return (new PeopleResource(People::create($request->all())))
-        ->additional(['msg'=>'se guardo correctamente'])
-        ->response()
-        ->setStatusCode(202);
+        $this->validate($request, $rules);
+
+        $persona = People::create($request->all());
+
+        return $this->showOne($persona, 201);
     }
 
     /**
@@ -63,14 +66,22 @@ class PeopleController extends  ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePeopleRequest $request, People $persona)
+    public function update(Request $request, People $persona)
     {
-       
-        $persona->update($request->validated());
-        return (new PeopleResource($persona))
-        ->additional(['msg'=>'se actualizo correctamente'])
-        ->response()
-        ->setStatusCode(202);
+        $persona->fill($request->only([
+            'name',
+            'email',
+            'document',
+            'phone',
+        ]));
+
+        if ($persona->isClean()) {
+            return $this->errorResponse('Debe especificar al menos un valor diferente para actualizar', 422);
+        }
+
+        $persona->save();
+
+        return $this->showOne($persona);
     }
 
     /**
@@ -82,9 +93,7 @@ class PeopleController extends  ApiController
     public function destroy( People  $persona)
     {
         $persona->delete();
-        return (new PeopleResource($persona))
-        ->additional(['msg'=>'se elimino correctamente'])
-        ->response()
-        ->setStatusCode(202);
+
+        return $this->showOne($persona);
     }
 }

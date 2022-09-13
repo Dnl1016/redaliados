@@ -30,18 +30,18 @@ class CompanyController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCompanyRequest $request)
+    public function store(Request $request)
     {
-        
-        // return response()->json([
-        //     'res'=>true,
-        //     'msg'=>'La compañia quedo guardada correctamente'
-        // ],200);
+        $rules = [
+            'name' => 'required',
+            'description' => 'required',
+        ];
 
-        return (new CompanyResource(Company::create($request->all())))
-        ->additional(['msg'=>'se guardo correctamente'])
-        ->response()
-        ->setStatusCode(202);
+        $this->validate($request, $rules);
+
+        $compañia = Company::create($request->all());
+
+        return $this->showOne($compañia, 201);
     }
 
     /**
@@ -52,7 +52,7 @@ class CompanyController extends ApiController
      */
     public function show(Company $compañia)
     {
-        return new CompanyResource($compañia);
+        return $this->showOne($compañia);
     }
 
     /**
@@ -62,14 +62,20 @@ class CompanyController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCompanyRequest $request, Company $compañia)
+    public function update(Request $request, Company $compañia)
     {
-       
-        $compañia->update($request->validated());
-        return (new CompanyResource($compañia))
-        ->additional(['msg'=>'se actualizo correctamente'])
-        ->response()
-        ->setStatusCode(202);
+        $compañia->fill($request->only([
+            'name',
+            'description',
+        ]));
+
+        if ($compañia->isClean()) {
+            return $this->errorResponse('Debe especificar al menos un valor diferente para actualizar', 422);
+        }
+
+        $compañia->save();
+
+        return $this->showOne($compañia);
     }
 
     /**
@@ -81,9 +87,7 @@ class CompanyController extends ApiController
     public function destroy( Company  $compañia)
     {
         $compañia->delete();
-        return (new CompanyResource($compañia))
-        ->additional(['msg'=>'se elimino correctamente'])
-        ->response()
-        ->setStatusCode(202);
+
+        return $this->showOne($compañia);
     }
 }
