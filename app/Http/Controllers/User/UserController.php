@@ -22,9 +22,9 @@ class UserController extends ApiController
     {
         // return User::all();
        // return UserResource::collection(User::all());
-       $usuarios = User::all();
+       $usuario = User::all();
 
-        return $this->showAll($usuarios);
+        return $this->showAll($usuario);
 
     }
 
@@ -87,7 +87,7 @@ class UserController extends ApiController
     public function update(Request $request, User $usuario)
     {
         $reglas = [
-            'email' => 'email|unique:users,email,' . $$usuario->id,
+            'email' => 'email|unique:users,email,' . $usuario->id,
             'password' => 'min:6|confirmed',
             'admin' => 'in:' . User::USUARIO_ADMINISTRADOR . ',' . User::USUARIO_REGULAR,
         ];
@@ -95,36 +95,36 @@ class UserController extends ApiController
         $this->validate($request, $reglas);
 
         if ($request->has('name')) {
-            $$usuario->name = $request->name;
+            $usuario->name = $request->name;
         }
 
-        if ($request->has('email') && $$usuario->email != $request->email) {
-            $$usuario->verified = User::USUARIO_NO_VERIFICADO;
-            $$usuario->verification_token = User::generarVerificationToken();
-            $$usuario->email = $request->email;
+        if ($request->has('email') && $usuario->email != $request->email) {
+            $usuario->verified = User::USUARIO_NO_VERIFICADO;
+            $usuario->verification_token = User::generarVerificationToken();
+            $usuario->email = $request->email;
         }
 
         if ($request->has('password')) {
-            $$usuario->password = bcrypt($request->password);
+            $usuario->password = bcrypt($request->password);
         }
 
         if ($request->has('admin')) {
             $this->allowedAdminAction();
         
-            if (!$$usuario->esVerificado()) {
+            if (!$usuario->esVerificado()) {
                 return $this->errorResponse('Unicamente los usuarios verificados pueden cambiar su valor de administrador', 409);
             }
 
-            $$usuario->admin = $request->admin;
+            $usuario->admin = $request->admin;
         }
 
-        if (!$$usuario->isDirty()) {
+        if (!$usuario->isDirty()) {
             return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar', 422);
         }
 
-        $$usuario->save();
+        $usuario->save();
 
-        return $this->showOne($$usuario);
+        return $this->showOne($usuario);
        
         // $usuario->update($request->validated());
         // return (new ($usuario))
@@ -147,5 +147,17 @@ class UserController extends ApiController
         // ->additional(['msg'=>'se elimino correctamente'])
         // ->response()
         // ->setStatusCode(202);
+    }
+
+    public function verify($token)
+    {
+        $usuario = User::where('verification_token', $token)->firstOrFail();
+
+        $usuario->verified = User::USUARIO_VERIFICADO;
+        $usuario->verification_token = null;
+
+        $usuario->save();
+
+        return $this->showMessage('La cuenta ha sido verificada');
     }
 }

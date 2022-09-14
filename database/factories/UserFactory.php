@@ -27,7 +27,7 @@ class UserFactory extends Factory
             'password' => fake()->password, // password
             'remember_token' => Str::random(10),
             'verified'=> $verificado= fake()->randomElement([User::USUARIO_VERIFICADO, User::USUARIO_NO_VERIFICADO]),
-           // 'verificacion_token' =>$verificado == User::USUARIO_VERIFICADO? null: User::generarVerificationToken(),
+            'verification_token' =>$verificado == User::USUARIO_VERIFICADO? null: User::generarVerificationToken(),
             'admin'=> fake()->randomElement([User::USUARIO_ADMINISTRADOR, User::USUARIO_REGULAR]),
             'status' => fake()->randomElement(['available', 'unavailable']),
             'people_id' => function(){

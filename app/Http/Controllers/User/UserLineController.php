@@ -1,29 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Talent;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\ApiController;
-use App\Models\Talent;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class TalentPeopleController extends ApiController
+class UserLineController extends ApiController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(User $usuario)
     {
-        $persona=Talent::findOrFail(1)->people;
+        $linea=$usuario->lines->allies;
         
-        return $this->showAll($persona);
+        return $this->showAll($linea);
 
-        // $person = Talent::find(3)->jobTittle;
-        // dd($person);
-        // $talento=Talent::all();
-
-        // return $this->showAll($talento);
     }
 
     /**
@@ -50,10 +45,10 @@ class TalentPeopleController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Talent  $talent
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Talent $talent)
+    public function show(User $user)
     {
         //
     }
@@ -61,10 +56,10 @@ class TalentPeopleController extends ApiController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Talent  $talent
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Talent $talent)
+    public function edit(User $user)
     {
         //
     }
@@ -73,10 +68,10 @@ class TalentPeopleController extends ApiController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Talent  $talent
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Talent $talent)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -84,10 +79,10 @@ class TalentPeopleController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Talent  $talent
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Talent $talent)
+    public function destroy(User $user)
     {
         //
     }

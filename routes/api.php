@@ -14,6 +14,7 @@ use  App\Http\Controllers\Project\ProjectController;
 use  App\Http\Controllers\Line\LineController;
 use  App\Http\Controllers\Category\CategoryController;
 use  App\Http\Controllers\Idea\IdeaController;
+Use  App\Http\Controllers\User\UserLineController;
 use  App\Http\Controllers\Ally\AllyController;
 use App\Models\User;
 
@@ -44,6 +45,10 @@ Route::put('usuario/{usuario}', [UserController::class, 'update']);
 
 Route::delete('usuario/{usuario}', [UserController::class, 'destroy']);
 
+Route::resource('usuario.linea', UserLineController::class)->only(['index']);
+
+
+Route::name('verify')->get('users/verify/{token}', 'User\UserController@verify');
 //personas
 
 // Route::apiResource('personas', PeopleController::class)
