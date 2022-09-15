@@ -19,10 +19,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        User::created(function($usuario) {
-            retry(5, function() use ($usuario) {
-                Mail::to($usuario)->send(new UserCreated($usuario));
-            }, 100);
+        User::created(function($user) {
+            Mail::to($user)->send(new UserCreated($user));
         });
 
         // User::updated(function($usuario) {

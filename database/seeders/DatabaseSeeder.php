@@ -30,7 +30,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //\App\Models\User::factory(10)->create();
-
+        TypeDocument::flushEventListeners();
+        status::flushEventListeners();
+        category::flushEventListeners();
+        Ally::flushEventListeners();
+        People::flushEventListeners();
+        User::flushEventListeners();
+        Talent::flushEventListeners();
+        Company::flushEventListeners();
         
         // ]);
         // $this->call(TypeDocumentSeeder::class);
@@ -51,7 +58,7 @@ class DatabaseSeeder extends Seeder
                 Talent::factory(5)->create([
                     'people_id'=>$talent->id
                 ]);
-                Company::factory(5)->create([
+                Company::factory()->create([
                     'talents_id'=>$talent->id
                 ]);
             });

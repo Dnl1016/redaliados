@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends ApiController
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +16,7 @@ class CategoryController extends ApiController
      */
     public function index()
     {
+        
         $categoria= Category::all();
 
         return $this->showAll($categoria);

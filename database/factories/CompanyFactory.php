@@ -22,14 +22,13 @@ class CompanyFactory extends Factory
             "tradename"=> fake()->catchPhrase,
             "address"=> fake()->address(),
             "phone"=> fake()->e164PhoneNumber,
-            "taxRegime"=>fake()->realText,
-            "mainActivity" =>fake()->realText,
+            "taxRegime"=>fake()->bs,
+            "mainActivity" =>fake()->bs,
             "legalRegistration" =>fake()->name(),
             "legalNature"=>fake()->name(),
-            "taxRegistration"=>fake()->realText,
-            "representativeDocument"=>fake()->realText,
+            "taxRegistration"=>fake()->bs,
+            "representativeDocument"=>fake()->bs,
             "commercialRegister"=>fake()->swiftBicNumber,
-            
         ];
     }
 }

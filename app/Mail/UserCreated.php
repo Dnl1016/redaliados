@@ -19,9 +19,9 @@ class UserCreated extends Mailable
      *
      * @return void
      */
-    public function __construct(User $usuario)
+    public function __construct()
     {
-        $this->usuario = $usuario;
+        // $this->user = $usuario;
     }
 
     /**
@@ -31,6 +31,6 @@ class UserCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.welcome')->subject('Por favor confirma tu correo electrónico');
+        return $this->text('emails.welcome')->subject('Por favor confirma tu correo electrónico');
     }
 }

@@ -16,6 +16,7 @@ use  App\Http\Controllers\Category\CategoryController;
 use  App\Http\Controllers\Idea\IdeaController;
 Use  App\Http\Controllers\User\UserLineController;
 use  App\Http\Controllers\Ally\AllyController;
+use App\Http\Controllers\SendEmailController;
 use App\Models\User;
 
 /*
@@ -35,11 +36,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //usuarios
 // Route::apiResource('usuarios', UserController::class);
-Route::get('usuarios', [UserController::class, 'index']);
+Route::get('usuarios', [UserController::class, 'index']) ->name('index');
 
-Route::get('usuario/{usuario}', [UserController::class, 'show']);
+Route::get('usuario/{usuario}', [UserController::class, 'show']) ->name('show');
 
-Route::post('usuario', [UserController::class, 'store']);
+Route::post('usuario', [UserController::class, 'store'])->name('store');
 
 Route::put('usuario/{usuario}', [UserController::class, 'update']);
 
@@ -47,6 +48,7 @@ Route::delete('usuario/{usuario}', [UserController::class, 'destroy']);
 
 Route::resource('usuario.linea', UserLineController::class)->only(['index']);
 
+Route::get('send-email', [SendEmailController::class, 'index']);
 
 Route::name('verify')->get('users/verify/{token}', 'User\UserController@verify');
 //personas

@@ -37,6 +37,7 @@ class User extends Authenticatable
         'verification_token',
         'admin',
         'people_id',
+        'allies_id',
         'status',
         
     ];
