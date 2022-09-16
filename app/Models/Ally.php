@@ -57,6 +57,6 @@ class Ally extends Model
 
     public function lines()
     {
-        return  $this->hasMany(Line::class); // One to many (inverse)
+        return  $this->hasMany(Line::class, "allies_id"); // One to many (inverse)
     }
 }

@@ -19,6 +19,10 @@ use  App\Http\Controllers\Ally\AllyController;
 use App\Http\Controllers\SendEmailController;
 use App\Models\User;
 
+use App\Mail\UserCreated;
+use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Stmt\Return_;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -48,9 +52,9 @@ Route::delete('usuario/{usuario}', [UserController::class, 'destroy']);
 
 Route::resource('usuario.linea', UserLineController::class)->only(['index']);
 
-Route::get('send-email', [SendEmailController::class, 'index']);
-
 Route::name('verify')->get('users/verify/{token}', 'User\UserController@verify');
+
+
 //personas
 
 // Route::apiResource('personas', PeopleController::class)

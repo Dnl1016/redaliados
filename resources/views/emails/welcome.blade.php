@@ -1,4 +1,4 @@
-Hola {{$usuario->name}}
+Hola {{$user->name}}
 Gracias por crear una cuenta. Por favor verifícala usando el siguiente enlace:
 
-{{route('verify', $usuario->verification_token)}}
+{{route('verify', $user->verification_token)}}

@@ -2,25 +2,22 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Line;
-use App\Models\Ally;
 use Illuminate\Http\Request;
 
-class UserLineController extends ApiController
+class UserTalentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $usuario)
+    public function index()
     {
-        $linea=$usuario->allies->lines;
+        $talent=$usuario->allies->lines;
         
         return $this->showAll($linea);
-
     }
 
     /**

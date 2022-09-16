@@ -3,10 +3,11 @@
 namespace App\Providers;
 
 use App\Mail\UserCreated;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Mail;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,11 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Schema::defaultStringLength(191);
-
-        User::created(function($user) {
-            Mail::to($user)->send(new UserCreated($user));
-        });
+        
 
         // User::updated(function($usuario) {
         //     if ($usuario->isDirty('email')) {
@@ -40,6 +37,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
+
+        User::created(function($user) {
+            Mail::to($user)->send(new UserCreated($user));
+        });
     }
 }

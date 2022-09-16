@@ -12,16 +12,16 @@ class UserCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $usuario;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        // $this->user = $usuario;
+         $this->user = $user;
     }
 
     /**
