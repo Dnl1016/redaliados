@@ -2,15 +2,12 @@
 
 namespace App\Models;
 
-
 use App\Models\Ally;
 use App\Models\People;
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
-use App\Models\User\UserController;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
@@ -22,6 +19,9 @@ class User extends Authenticatable
 
     const USUARIO_ADMINISTRADOR = "true";
     const USUARIO_REGULAR = "false";
+
+    protected $table = 'users';
+    protected $dates=['deleted_at'];
 
 
     /**
@@ -73,9 +73,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-
-    public function esVerficado()
+    public function esVerificado()
     {
         return $this->Verified ==User::USUARIO_VERIFICADO;
     }
@@ -87,9 +85,6 @@ class User extends Authenticatable
     {
         return Str::random(40);
     }
-
-    protected $table = 'users';
-    protected $dates=['deleted_at'];
 
     public function people()
     {

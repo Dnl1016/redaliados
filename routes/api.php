@@ -52,8 +52,9 @@ Route::delete('usuario/{usuario}', [UserController::class, 'destroy']);
 
 Route::resource('usuario.linea', UserLineController::class)->only(['index']);
 
-Route::name('verify')->get('users/verify/{token}', 'User\UserController@verify');
+Route::name('verify')->get('usuario/verify/{token}', 'User\UserController@verify');
 
+Route::name('resend')->get('usuario/{usuario}/resend', 'User\UserController@resend');
 
 //personas
 

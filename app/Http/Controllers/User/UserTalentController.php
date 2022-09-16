@@ -15,10 +15,10 @@ class UserTalentController extends Controller
      */
     public function index()
     {
-        $talent=$usuario->allies->lines;
+    //     $talent=$usuario->allies->lines;
         
-        return $this->showAll($linea);
-    }
+    //     return $this->showAll($linea);
+     }
 
     /**
      * Show the form for creating a new resource.
