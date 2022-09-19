@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Project;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Transformers\StatusTransformer;
 
 class Status extends Model
 {
@@ -13,6 +14,7 @@ class Status extends Model
     public $timestamps = false;
     protected $dates=['deleted_at'];
     protected $table = 'status';
+    public $transformer=StatusTransformer::class;
     
 
     protected $fillable = [

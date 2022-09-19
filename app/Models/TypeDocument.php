@@ -6,6 +6,7 @@ use App\Models\People;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Transformers\TypeDocumentTransformer;
 
 class TypeDocument extends Model
 {
@@ -24,7 +25,7 @@ class TypeDocument extends Model
         return mb_strtoupper($valor);
     }
 
-
+    public $transformer=TypeDocumentTransformer::class;
     protected $dates=['deleted_at'];
     protected $table = 'typeDocuments';
     public $timestamps = false;

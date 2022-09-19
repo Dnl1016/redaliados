@@ -59,7 +59,7 @@ class TypeDocumentController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreTypeDocumentRequest $request, TypeDocument $tipoDocumento)
+    public function update(Request $request, TypeDocument $tipoDocumento)
     {
     
         $tipoDocumento->fill($request->only([

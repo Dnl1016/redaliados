@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Transformers\UserTransformer;
 
 class User extends Authenticatable
 {
@@ -22,6 +23,8 @@ class User extends Authenticatable
 
     protected $table = 'users';
     protected $dates=['deleted_at'];
+
+    public $transformer=UserTransformer::class;
 
 
     /**

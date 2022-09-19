@@ -92,7 +92,7 @@ class UserController extends ApiController
         $this->validate($request, $reglas);
 
         if ($request->has('name')) {
-            $usuario->name = $request->name;
+            $usuario->name =$request->name;
         }
 
         if ($request->has('email') && $usuario->email != $request->email) {
@@ -150,7 +150,7 @@ class UserController extends ApiController
     {
         $usuario = User::where('verification_token', $token)->firstOrFail();
 
-        $usuario->verified = User::USUARIO_VERIFICADO;
+        $usuario->verified =User::USUARIO_VERIFICADO;
         $usuario->verification_token = null;
 
         $usuario->save();
@@ -163,8 +163,10 @@ class UserController extends ApiController
         if ($usuario->esVerificado()) {
             return $this->errorResponse('Este usuario ya ha sido verificado.', 409);
         }
-
-        Mail::to($usuario)->send(new UserCreated($usuario));
+        
+        retry(5, function() use ($usuario) {
+            Mail::to($usuario)->send(new UserCreated($usuario));
+        }, 100);
 
         return $this->showMessage('El correo de verificación se ha reenviado');
 

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('verified')->default(User::USUARIO_NO_VERIFICADO);
             $table->string('admin')->default(User::USUARIO_REGULAR);
             $table->string('verification_token')->nullable();
-            $table->string('status')->default('unavailable');
+            $table->string('status')->default('disponible');
             $table->timestamps();
             $table->softDeletes();
 

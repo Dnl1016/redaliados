@@ -6,6 +6,7 @@ use App\Models\Talent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Transformers\CompanyTransformer;
 
 class Company extends Model
 {
@@ -35,6 +36,7 @@ class Company extends Model
 
     protected $table = 'companies';
     public $timestamps = false;
+    public $transformer=CompanyTransformer::class;
     protected $dates=['deleted_at'];
 
     public function talents()

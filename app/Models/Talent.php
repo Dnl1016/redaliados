@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\People;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Transformers\TalentTransformer;
 
 class Talent extends Model
 {
@@ -32,6 +33,7 @@ class Talent extends Model
         return mb_strtoupper($valor);
     }
 
+    public $transformer=TalentTransformer::class;
     public $timestamps = false;
     protected $dates=['deleted_at'];
     protected $table = 'talents';
