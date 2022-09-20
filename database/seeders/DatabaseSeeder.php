@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Ally;
 use App\Models\Category;
 use App\Models\Company;
+use App\Models\EconomicActivity;
+use App\Models\EconomicSector;
 use App\Models\Idea;
 use App\Models\Line;
 use App\Models\People;
@@ -18,6 +20,7 @@ use App\Models\Study;
 use App\Models\TypeDocument;
 use App\Models\Talent;
 use App\Models\Status;
+use Database\Factories\EconomicSectorFactory;
 use Database\Seeders\factory;
 
 class DatabaseSeeder extends Seeder
@@ -48,6 +51,7 @@ class DatabaseSeeder extends Seeder
         Status::factory(10)->create();
         Category::factory(10)->create();
         Ally::factory(10)->create();
+        EconomicSector::factory(3)->create();
       
     
         People::factory(10)->create()->each(function ($people){
@@ -63,6 +67,12 @@ class DatabaseSeeder extends Seeder
                 ]);
             });
         });
+        // EconomicSector ::factory(3)->create()->each(function ($economicSectors){
+        //     EconomicActivity::factory(1)->create([
+        //         'economicSectors_id' => $economicSectors->id
+
+        //     ]);
+        // });
 
     }
 }

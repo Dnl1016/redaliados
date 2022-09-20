@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('address');
             $table->string('phone');
             $table->string('taxRegime')->nullable();
-            $table->string('mainActivity')->nullable();
+            // $table->string('mainActivity')->nullable();
             $table->string('legalRegistration')->nullable();
             $table->string('legalNature')->nullable();
             $table->string('taxRegistration')->nullable();
@@ -29,6 +29,9 @@ return new class extends Migration
 
            $table->bigInteger('talents_id')->unsigned();
            $table->foreign('talents_id')->references('id')->on('talents');
+
+           $table->bigInteger('economicSectors_id')->unsigned();
+           $table->foreign('economicSectors_id')->references('id')->on('economicSectors');
         });
     }
 

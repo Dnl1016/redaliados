@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Ally;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Transformers\LineTransformer;
 
 class Line extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -18,7 +18,8 @@ class Line extends Model
     ];
 
     public $timestamps = false;
-    protected $dates=['deleted_at'];
+    public $transformer=LineTransformer::class;
+    
 
     public function setNameAttribute($valor)
     {

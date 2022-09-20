@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Talent;
 use App\Models\Category;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 use App\Transformers\SkillTransformer;
 
 class Skill extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -21,7 +21,6 @@ class Skill extends Model
     ];
     
     public $timestamps = false;
-    protected $dates=['deleted_at'];
     public $transformer=SkillTransformer::class;
 
     public function setNameAttribute($valor)

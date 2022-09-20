@@ -8,6 +8,7 @@ use App\Models\Talent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Transformers\PeopleTransformer;
 
 class People extends Model
 {
@@ -18,13 +19,14 @@ class People extends Model
         'email',
         'document',
         'phone',
+        'created_at',
+        'updated_at',
         'typeDocument_id',
         
     ];
 
     protected $hidden = [
-        'created_at',
-        'updated_at',
+        
         
     ];
     public function setNameAttribute($valor)
@@ -42,8 +44,9 @@ class People extends Model
 
 
     protected $table = 'people';
-    public $timestamps = false;
     protected $dates=['deleted_at'];
+    public $transformer=PeopleTransformer::class;
+    
    
 
     /**

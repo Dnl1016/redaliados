@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\EconomicSector;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,12 +24,15 @@ class CompanyFactory extends Factory
             "address"=> fake()->address(),
             "phone"=> fake()->e164PhoneNumber,
             "taxRegime"=>fake()->bs,
-            "mainActivity" =>fake()->bs,
+            // "mainActivity" =>fake()->bs,
             "legalRegistration" =>fake()->name(),
             "legalNature"=>fake()->name(),
             "taxRegistration"=>fake()->bs,
             "representativeDocument"=>fake()->bs,
             "commercialRegister"=>fake()->swiftBicNumber,
+            'economicSectors_id' => function(){
+                return EconomicSector::all()->random();
+            },
         ];
     }
 }

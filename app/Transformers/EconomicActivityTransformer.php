@@ -2,47 +2,29 @@
 
 namespace App\Transformers;
 
-use App\Models\Category;
+use App\Models\EconomicActivity;
 use League\Fractal\TransformerAbstract;
 
-class CategoryTransformer extends TransformerAbstract
+class EconomicActivityTransformer extends TransformerAbstract
 {
-    /**
-     * List of resources to automatically include
-     *
-     * @var array
-     */
-    protected array $defaultIncludes = [
-        //
-    ];
-    
-    /**
-     * List of resources possible to include
-     *
-     * @var array
-     */
-    protected array $availableIncludes = [
-        //
-    ];
-    
+
     /**
      * A Fractal transformer.
      *
      * @return array
      */
-    public function transform(Category $categoria)
+    public function transform(EconomicActivity $actividad)
     {
         return [
-            "identificador" => (int)$categoria->id,
-            'categoria' => (string)$categoria->name,
+            "identificador" => (int)$actividad->id,
+            'actividadEconomica' => (string)$actividad->name,
         ];
     }
-
     public static function originalAttribute($index)
     {
         $attributes = [
             'identificador' => 'id',
-            'categoria' => 'name',
+            'sectorEconomico' => 'name',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
@@ -52,7 +34,7 @@ class CategoryTransformer extends TransformerAbstract
     {
         $attributes = [
             'id' => 'identificador',
-            'name' => 'categoria',
+            'name' => 'sectorEconomico',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;

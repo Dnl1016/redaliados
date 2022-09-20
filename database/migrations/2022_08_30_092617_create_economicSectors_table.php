@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ideas', function (Blueprint $table) {
+        Schema::create('economicSectors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
-            
-            $table->bigInteger('talents_id')->unsigned();
-            $table->foreign('talents_id')->references('id')->on('talents');
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ideas');
+        Schema::dropIfExists('economicSectors');
     }
 };

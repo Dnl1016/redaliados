@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Line;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Transformers\AllyTransformer;
 
 class Ally extends Model
 {
@@ -14,6 +15,7 @@ class Ally extends Model
 
     public $timestamps = false;
     protected $dates=['deleted_at'];
+    public $transformer=AllyTransformer::class;
 
     protected $fillable = [
         'name',
@@ -23,7 +25,7 @@ class Ally extends Model
         'address',
         'nodeName',
         'region',
-        'formatiionCenter',
+        'formationCenter',
            
     ];
 

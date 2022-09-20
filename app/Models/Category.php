@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Skill;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Transformers\CategoryTransformer;
 
 class Category extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'name',  
     ];
     public $timestamps = false;
-    protected $dates=['deleted_at'];
+    public $transformer=CategoryTransformer::class;
 
     public function setNameAttribute($valor)
     {

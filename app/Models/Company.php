@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\EconomicSector;
 use App\Models\Talent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,13 +18,15 @@ class Company extends Model
         'address',
         'phone',
         'taxRegime',
-        'mainActivity',
+        // 'mainActivity',
         'legalRegistration',
         'legalNature',
         'taxRegistration',
         'representativeDocument',
         'commercialRegister',
         'talents_id',
+        'economicSectors_id',
+
     ];
     public function setTradeNameAttribute($valor)
     {
@@ -42,6 +45,11 @@ class Company extends Model
     public function talents()
         {
             return $this->belongsTo(Talent::class, 'talents_id'); //  Relationship one to one (inverse)
+        }
+    
+    public function economicSectors ()
+        {
+            return $this->hasMany(EconomicSector::class); //Relationship One To Many
         }
 
 }

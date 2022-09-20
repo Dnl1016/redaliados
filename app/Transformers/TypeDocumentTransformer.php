@@ -20,4 +20,23 @@ class TypeDocumentTransformer extends TransformerAbstract
             'tipoDocumento' => (string)$tipoDocumento->name,
         ];
     }
+    public static function originalAttribute($index)
+    {
+        $attributes = [
+            'identificador' => 'id',
+            'tipoDocumento' => 'name',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes = [
+            'id' => 'identificador',
+            'name' => 'tipoDocumento',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Status;
 use App\Models\Idea;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Transformers\ProjectTransformer;
 
 class Project extends Model
 {
@@ -24,6 +25,7 @@ class Project extends Model
 
     public $timestamps = false;
     protected $dates=['deleted_at'];
+    public $transformer=ProjectTransformer::class;
 
     public function setNameAttribute($valor)
     {

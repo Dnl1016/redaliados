@@ -13,7 +13,7 @@ class UserTransformer extends TransformerAbstract
     {
         return [
             "identificador" => (int)$user->id,
-            'nombre' => (string)$user->name,
+            'usuario' => (string)$user->name,
             'correo' => (string)$user->email,
             'esVerificado' => (int)$user->verified,
             'esAdministrador' => ($user->admin === 'true'),
@@ -25,4 +25,42 @@ class UserTransformer extends TransformerAbstract
             'estado'=>(string)$user->status,
         ];
     }
+    public static function originalAttribute($index)
+    {
+        $attributes = [
+            "identificador" => 'id',
+            'usuario' => 'name',
+            'correo' => 'email',
+            'esVerificado' => 'verified',
+            'esAdministrador' => 'admin',
+            'fechaCreacion' => 'created_at',
+            'fechaActualizacion' => 'updated_at',
+            'fechaEliminacion' => 'deleted_at',
+            'persona' => 'people_id',
+            'aliado'=> 'allies_id',
+            'estado'=>'status',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes = [
+            'id' =>"identificador" ,
+            'name' => 'usuario',
+            'email' => 'correo',
+            'verified' => 'esVerificado',
+            'admin' => 'esAdministrador',
+            'created_at' => 'fechaCreacion',
+            'updated_at' => 'fechaActualizacion',
+            'deleted_at' => 'fechaEliminacion',
+            'people_id' => 'persona',
+            'allies_id'=> 'aliado',
+            'status'=>'estado',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+    
 }

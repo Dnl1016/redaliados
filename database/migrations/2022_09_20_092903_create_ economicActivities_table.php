@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ideas', function (Blueprint $table) {
+        Schema::create('economicActivities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
             
-            $table->bigInteger('talents_id')->unsigned();
-            $table->foreign('talents_id')->references('id')->on('talents');
+
+            $table->bigInteger('economicSectors_id')->unsigned();
+            $table->foreign('economicSectors_id')->references('id')->on('economicSectors');
+           
         });
     }
 
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ideas');
+        Schema::dropIfExists('_table');
     }
 };

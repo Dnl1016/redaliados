@@ -17,10 +17,35 @@ class SkillTransformer extends TransformerAbstract
     {
         return [
             "identificador" => (int)$skill->id,
-            'nombre' => (string)$skill->name,
+            'habilidad' => (string)$skill->name,
             'detalle'=>(string)$skill->description,
             'categoria' => (int)$skill->categories_id,
             'talento'=> (int)$skill->talents_id
         ];
+    }
+    public static function originalAttribute($index)
+    {
+        $attributes = [
+            'identificador' => 'id',
+            'habilidad' => 'name',
+            'detalle' => 'description',
+            'categoria' => 'categories_id',
+            'talento'=>'talents_id',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes = [
+            'id' => 'identificador',
+            'name' => 'habilidad',
+            'description'=> 'detalle',
+            'categories_id'=> 'categoria',
+            'talents_id'=>'talento',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
     }
 }

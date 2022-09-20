@@ -17,8 +17,30 @@ class StatusTransformer extends TransformerAbstract
     {
         return [
             "identificador" => (int)$estado->id,
-            'nombre' => (string)$estado->name,
+            'estado' => (string)$estado->name,
             'detalle'=>(string)$estado->description,
         ];
+    }
+
+    public static function originalAttribute($index)
+    {
+        $attributes = [
+            'identificador' => 'id',
+            'estado' => 'name',
+            'detalle' => 'description',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes = [
+            'id' => 'identificador',
+            'name' => 'estado',
+            'description'=> 'detalle',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
     }
 }

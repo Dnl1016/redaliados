@@ -1,25 +1,21 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\EconomicSector;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Project;
-use App\Models\Talent;
-use App\Transformers\IdeaTransformer;
+use App\Transformers\EconomicActivityTransformer;
 
-
-class Idea extends Model
+class EconomicActivity extends Model
 {
     use HasFactory;
-    
+    protected $table = 'economicActivities';
     public $timestamps = false;
-    public $transformer=IdeaTransformer::class;
+    public $transformer=EconomicActivityTransformer::class;
 
     protected $fillable = [
         'name',
-        'description',
-        'talents_id',
+        'economicSectors_id',
     ];
     public function setNameAttribute($valor)
     {
@@ -30,15 +26,8 @@ class Idea extends Model
         return mb_strtoupper($valor);
     }
 
-    public function projects()
+    public function economicSectors ()
     {
-        return $this->hasMany(Project::class); //Relationship One To Many
-    
+        return $this->hasMany(EconomicSector::class); //Relationship One To Many
     }
-    public function talents ()
-    {
-        return $this->hasMany(Talent::class); //Relationship One To Many
-    }
-
-
 }
