@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\TypeDocument;
 
-use App\Http\Requests\StoreTypeDocumentRequest;
-use App\Http\Resources\CompanyResource;
+
 use App\Models\TypeDocument;
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\TypeDocumentResource;
+use App\Transformers\TypeDocumentTransformer;
+
 
 class TypeDocumentController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('transform.input:' . TypeDocumentTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

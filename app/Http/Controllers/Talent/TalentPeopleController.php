@@ -6,8 +6,10 @@ use App\Http\Controllers\ApiController;
 use App\Models\Talent;
 use Illuminate\Http\Request;
 
+
 class TalentPeopleController extends ApiController
 {
+   
     /**
      * Display a listing of the resource.
      *

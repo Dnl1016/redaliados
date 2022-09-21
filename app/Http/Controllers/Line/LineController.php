@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Line;
 use App\Http\Controllers\ApiController;
 use App\Models\Line;
 use Illuminate\Http\Request;
+use App\Transformers\LineTransformer;
 
 class LineController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('transform.input:' . LineTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

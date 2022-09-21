@@ -18,6 +18,12 @@ class EconomicActivityTransformer extends TransformerAbstract
         return [
             "identificador" => (int)$actividad->id,
             'actividadEconomica' => (string)$actividad->name,
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('.show', $actividad->id),
+                ]
+            ]
         ];
     }
     public static function originalAttribute($index)

@@ -20,6 +20,10 @@ class PeopleTransformer extends TransformerAbstract
             'fechaActualizacion' => (string)$persona->updated_at,
             'fechaEliminacion' => isset($persona->deleted_at) ? (string) $persona->deleted_at : null,
             'tipoDocumento'=> (int)$persona->typeDocument_id,
+            [
+                'rel' => 'self',
+                'href' => route('persona.show', $persona->id),
+            ]
         ];
     }
     public static function originalAttribute($index)

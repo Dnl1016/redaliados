@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Project;
 use App\Http\Controllers\ApiController;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Transformers\ProjectTransformer;
 
 class ProjectController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('transform.input:' . ProjectTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

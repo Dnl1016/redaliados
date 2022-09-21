@@ -19,7 +19,11 @@ class IdeaTransformer extends TransformerAbstract
             "identificador" => (int)$idea->id,
             'idea' => (string)$idea->name,
             'detalle'=>(string)$idea->description,
-            'talento'=> (int)$idea->talents_id
+            'talento'=> (int)$idea->talents_id,
+            [
+                'rel' => 'self',
+                'href' => route('idea.show', $idea->id),
+            ]
         ];
     }
     public static function originalAttribute($index)

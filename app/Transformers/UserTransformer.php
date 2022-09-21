@@ -23,6 +23,10 @@ class UserTransformer extends TransformerAbstract
             'persona' => (int)$user->people_id,
             'aliado'=> (int)$user->allies_id,
             'estado'=>(string)$user->status,
+            [
+                'rel' => 'self',
+                'href' => route('usuario.show', $user->id),
+            ]
         ];
     }
     public static function originalAttribute($index)

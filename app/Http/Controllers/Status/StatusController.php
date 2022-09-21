@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Status;
 use App\Http\Controllers\ApiController;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use App\Transformers\StatusTransformer;
 
 class StatusController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('transform.input:' . StatusTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

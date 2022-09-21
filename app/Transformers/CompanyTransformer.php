@@ -29,6 +29,12 @@ class CompanyTransformer extends TransformerAbstract
             'registroComercial'=> (string)$company->commercialRegister,
             'fechaEliminacion' => isset($company->deleted_at) ? (string) $company->deleted_at : null,
             'sectorEconomico'=> (int)$company->economicSectors_id,
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('compañia.show', $company->id),
+                ]
+            ]
         ];
     }
     public static function originalAttribute($index)

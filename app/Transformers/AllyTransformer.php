@@ -26,6 +26,12 @@ class AllyTransformer extends TransformerAbstract
             'region'=>(string)$aliado->region,
             'centroFormacion'=>(string)$aliado->formationCenter,
             'fechaEliminacion' => isset($aliado->deleted_at) ? (string) $aliado->deleted_at : null,
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('aliado.show', $aliado->id),
+                ]
+            ]
         ];
     }
     public static function originalAttribute($index)

@@ -18,6 +18,10 @@ class TypeDocumentTransformer extends TransformerAbstract
         return [
             "identificador" => (int)$tipoDocumento->id,
             'tipoDocumento' => (string)$tipoDocumento->name,
+            [
+                'rel' => 'self',
+                'href' => route('tipoDocumento.show', $tipoDocumento->id),
+            ]
         ];
     }
     public static function originalAttribute($index)

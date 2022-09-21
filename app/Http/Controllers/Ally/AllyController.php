@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Ally;
 use App\Http\Controllers\ApiController;
 use App\Models\Ally;
 use Illuminate\Http\Request;
+use App\Transformers\AllyTransformer;
 
 class AllyController extends ApiController
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('transform.input:' . AllyTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

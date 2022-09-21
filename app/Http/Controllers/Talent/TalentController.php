@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Talent;
 
-use App\Http\Requests\StoreTalentsRequest;
-use App\Http\Requests\UpdateTalentsRequest;
+
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Models\Talent;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\TalentResource;
+use App\Transformers\TalentTransformer;
 
 class TalentController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('transform.input:' . TalentTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

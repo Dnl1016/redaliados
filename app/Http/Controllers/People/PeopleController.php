@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\People;
 
-use App\Http\Requests\StorePeopleRequest;
-use App\Http\Requests\UpdatePeopleRequest;
+
 use App\Models\People;
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\PeopleResource;
+use App\Transformers\PeopleTransformer;
+
 
 class PeopleController extends  ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('transform.input:' . PeopleTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

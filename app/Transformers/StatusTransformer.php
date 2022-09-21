@@ -19,6 +19,10 @@ class StatusTransformer extends TransformerAbstract
             "identificador" => (int)$estado->id,
             'estado' => (string)$estado->name,
             'detalle'=>(string)$estado->description,
+            [
+                'rel' => 'self',
+                'href' => route('estado.show', $estado->id),
+            ]
         ];
     }
 

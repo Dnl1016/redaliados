@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Skill;
 use App\Http\Controllers\ApiController;
 use App\Models\Skill;
 use Illuminate\Http\Request;
+use App\Transformers\SkillTransformer;
 
 class SkillController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('transform.input:' . SkillTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

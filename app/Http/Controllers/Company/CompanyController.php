@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Company;
 
-use App\Http\Requests\StoreCompanyRequest;
-use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Company;
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\CompanyResource;
+use App\Transformers\CompanyTransformer;
 
 class CompanyController extends ApiController
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('transform.input:' . CompanyTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

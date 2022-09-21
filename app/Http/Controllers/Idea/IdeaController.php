@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Idea;
 use App\Http\Controllers\ApiController;
 use App\Models\Idea;
 use Illuminate\Http\Request;
+use App\Transformers\IdeaTransformer;
 
 class IdeaController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('transform.input:' . IdeaTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

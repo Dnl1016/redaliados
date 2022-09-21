@@ -24,6 +24,10 @@ class ProjectTransformer extends TransformerAbstract
             'fechaEliminacion' => isset($proyecto->deleted_at) ? (string) $proyecto->deleted_at : null,
             'estado' => (int)$proyecto->status_id,
             'numeroIdea'=> (int)$proyecto->aideas_id,
+            [
+                'rel' => 'self',
+                'href' => route('proyecto.show', $proyecto->id),
+            ]
         ];
     }
     public static function originalAttribute($index)
@@ -38,6 +42,7 @@ class ProjectTransformer extends TransformerAbstract
             'fechaEliminacion' =>'deleted_at',
             'estado' => 'staus_id',
             'numeroIdea'=> 'ideas_id',
+            
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;

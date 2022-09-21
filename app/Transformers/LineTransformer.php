@@ -20,6 +20,10 @@ class LineTransformer extends TransformerAbstract
             'linea' => (string)$linea->name,
             'detalle'=>(string)$linea->description,
             'aliado' => (int)$linea->allies_id,
+            [
+                'rel' => 'self',
+                'href' => route('linea.show', $linea->id),
+            ]
         ];
     }
     public static function originalAttribute($index)

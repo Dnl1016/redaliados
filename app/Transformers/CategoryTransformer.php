@@ -35,6 +35,12 @@ class CategoryTransformer extends TransformerAbstract
         return [
             "identificador" => (int)$categoria->id,
             'categoria' => (string)$categoria->name,
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('categoria.show', $categoria->id),
+                ]
+            ]
         ];
     }
 

@@ -74,5 +74,11 @@ class DatabaseSeeder extends Seeder
         //     ]);
         // });
 
+        EconomicActivity::factory()
+            ->count(50)
+            ->hasEconomicSector()
+            ->create();
+        
+
     }
 }
