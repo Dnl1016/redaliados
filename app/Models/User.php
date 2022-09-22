@@ -10,10 +10,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Transformers\UserTransformer;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use  HasFactory, Notifiable, SoftDeletes;
+    use  HasFactory, HasApiTokens, Notifiable, SoftDeletes;
 
     const USUARIO_VERIFICADO = "1";
     const USUARIO_NO_VERIFICADO = "0";

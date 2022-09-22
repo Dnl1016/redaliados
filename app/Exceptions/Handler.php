@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -99,6 +100,9 @@ class Handler extends ExceptionHandler
                 return $this->errorResponse('No se puede eliminar de forma permamente el recurso porque está relacionado con algún otro.', 409);
             }
         }
+        if ($exception instanceof TokenMismatchException) {
+            return redirect()->back()->withInput($request->input());
+        }
         
         return parent::render($request, $exception);
         if (config('app.debug')) {
@@ -111,11 +115,12 @@ class Handler extends ExceptionHandler
 
     protected function unauthenticated($request, AuthenticationException $exception)
     {
+        if ($this->isFrontend($request)) {
+            return redirect()->guest('login');
+        }
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
-
-        return redirect()->guest('login');
         return $this->errorResponse('No autenticado.', 401);        
     }
 
@@ -132,8 +137,20 @@ class Handler extends ExceptionHandler
     protected function convertValidationExceptionToResponse(ValidationException $e, $request)
     {
         $errors = $e->validator->errors()->getMessages();
+
+        if ($this->isFrontend($request)) {
+            return $request->ajax() ? response()->json($errors, 422) : redirect()
+                ->back()
+                ->withInput($request->input())
+                ->withErrors($errors);
+        }
  
         return $this->errorResponse($errors, 422);
+    }
+
+    private function isFrontend($request)
+    {
+        return $request->acceptsHtml() && collect($request->route()->middleware())->contains('web');
     }
  
 }

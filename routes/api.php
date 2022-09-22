@@ -189,3 +189,5 @@ Route::get('aliado/{aliado}', [AllyController::class, 'show'])->name('aliado.sho
 Route::put('aliado/{aliado}', [AllyController::class, 'update'])->name('aliado.update');
 
 Route::delete('aliado/{aliado}', [AllyController::class, 'destroy'])->name('aliado.destroy');
+
+Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
