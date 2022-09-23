@@ -5,9 +5,15 @@ namespace App\Http\Controllers\EconomicSector;
 use App\Http\Controllers\ApiController;
 use App\Models\EconomicSector;
 use Illuminate\Http\Request;
+use App\Transformers\EconomicSectorTransformer;
 
 class EconomicSectorController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('client.credentials')->only(['index', 'show']);
+        $this->middleware('transform.input:' . EconomicSectorTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

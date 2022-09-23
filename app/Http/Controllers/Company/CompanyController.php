@@ -11,6 +11,7 @@ class CompanyController extends ApiController
 {   
     public function __construct()
     {
+        $this->middleware('client.credentials')->only(['index', 'show']);
         $this->middleware('transform.input:' . CompanyTransformer::class)->only(['store', 'update']);
     }
     /**
