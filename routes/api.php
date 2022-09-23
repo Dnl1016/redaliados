@@ -169,7 +169,11 @@ Route::put('idea/{idea}', [IdeaController::class, 'update'])->name('idea.update'
 Route::delete('idea/{idea}', [IdeaController::class, 'destroy'])->name('idea.destroy');
 
 //categoria
-Route::get('categorias', [CategoryController::class, 'index'])->name('categorias.index');
+
+Route::middleware('auth:api')->group( function () {
+    Route::get('categorias', [CategoryController::class, 'index'])->name('categorias.index');
+});
+
 
 Route::post('categoria', [CategoryController::class, 'store'])->name('categoria.store');
 

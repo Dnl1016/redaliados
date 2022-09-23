@@ -8,11 +8,19 @@ use App\Models\User;
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Transformers\UserTransformer;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+
 
 class UserController extends ApiController
 {
+    use HasApiTokens, HasFactory, Notifiable; 
+
     public function __construct()
     {
+        $this->middleware('client.credentials')->only(['index', 'show']);
         $this->middleware('transform.input:' . UserTransformer::class)->only(['store', 'update']);
     }
     /**
