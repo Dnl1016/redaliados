@@ -11,8 +11,7 @@ use App\Transformers\UserTransformer;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends ApiController
 {
@@ -20,7 +19,8 @@ class UserController extends ApiController
 
     public function __construct()
     {
-        $this->middleware('client.credentials')->only(['index', 'show']);
+        $this->middleware('client.credentials')->only(['store', 'resend']);
+        $this->middleware('auth:api')->except(['store', 'verify', 'resend']);
         $this->middleware('transform.input:' . UserTransformer::class)->only(['store', 'update']);
     }
     /**
@@ -47,7 +47,6 @@ class UserController extends ApiController
     public function store(Request $request)
     {
         $reglas = [
-            'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed'
         ];
@@ -55,7 +54,7 @@ class UserController extends ApiController
         $this->validate($request, $reglas);
 
         $campos = $request->all();
-        $campos['password'] = bcrypt($request->password);
+        $campos['password'] = Hash::make($request->password);
         $campos['verified'] = User::USUARIO_NO_VERIFICADO;
         $campos['verification_token'] = User::generarVerificationToken();
         $campos['admin'] = User::USUARIO_REGULAR;
@@ -103,10 +102,6 @@ class UserController extends ApiController
         ];
 
         $this->validate($request, $reglas);
-
-        if ($request->has('name')) {
-            $usuario->name =$request->name;
-        }
 
         if ($request->has('email') && $usuario->email != $request->email) {
             $usuario->verified = User::USUARIO_NO_VERIFICADO;

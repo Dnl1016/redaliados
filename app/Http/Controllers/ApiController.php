@@ -10,7 +10,8 @@ class ApiController extends Controller
     Use ApiResponser;
 
     public function __construct()
-    {
-        
+    { 
+    	$this->middleware('auth:api');
+      
     }
 }

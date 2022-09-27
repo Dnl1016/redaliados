@@ -34,7 +34,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
         'verified',
@@ -42,19 +41,8 @@ class User extends Authenticatable
         'admin',
         'people_id',
         'allies_id',
-        'status',
         
     ];
-
-    public function setNameAttribute($valor)
-    {
-        $this->attributes['name'] = strtoupper($valor);
-    }
-    public function getNameAttribute($valor)
-    {
-        return mb_strtoupper($valor);
-    }
-
 
     public function setEmailAttribute($valor)
     {
@@ -71,6 +59,7 @@ class User extends Authenticatable
         'password',
         'verification_token',
         'remember_token',
+        'status',
     ];
 
     protected $casts = [

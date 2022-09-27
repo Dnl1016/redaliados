@@ -11,6 +11,7 @@ class AllyController extends ApiController
 {   
     public function __construct()
     {
+        $this->middleware('auth:api')->except(['show', 'index']);
         $this->middleware('client.credentials');
         $this->middleware('transform.input:' . AllyTransformer::class)->only(['store', 'update']);
     }

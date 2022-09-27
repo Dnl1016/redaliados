@@ -13,7 +13,6 @@ class UserTransformer extends TransformerAbstract
     {
         return [
             "identificador" => (int)$user->id,
-            'usuario' => (string)$user->name,
             'correo' => (string)$user->email,
             'esVerificado' => (int)$user->verified,
             'esAdministrador' => ($user->admin === 'true'),
@@ -23,17 +22,18 @@ class UserTransformer extends TransformerAbstract
             'persona' => (int)$user->people_id,
             'aliado'=> (int)$user->allies_id,
             'estado'=>(string)$user->status,
-            [
-                'rel' => 'self',
-                'href' => route('usuario.show', $user->id),
-            ]
+            'links' =>[
+                [
+                    'rel' => 'self',
+                    'href' => route('usuario.show', $user->id),
+                ],
+            ], 
         ];
     }
     public static function originalAttribute($index)
     {
         $attributes = [
             "identificador" => 'id',
-            'usuario' => 'name',
             'correo' => 'email',
             'esVerificado' => 'verified',
             'esAdministrador' => 'admin',
@@ -51,8 +51,7 @@ class UserTransformer extends TransformerAbstract
     public static function transformedAttribute($index)
     {
         $attributes = [
-            'id' =>"identificador" ,
-            'name' => 'usuario',
+            'id' =>'identificador',
             'email' => 'correo',
             'verified' => 'esVerificado',
             'admin' => 'esAdministrador',

@@ -21,10 +21,12 @@ class SkillTransformer extends TransformerAbstract
             'detalle'=>(string)$skill->description,
             'categoria' => (int)$skill->categories_id,
             'talento'=> (int)$skill->talents_id,
-            [
-                'rel' => 'self',
-                'href' => route('skill.show', $skill->id),
-            ]
+            'links' =>[
+                [
+                    'rel' => 'self',
+                    'href' => route('skill.show', $skill->id),
+                ],
+            ], 
         ];
     }
     public static function originalAttribute($index)

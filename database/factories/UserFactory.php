@@ -5,6 +5,7 @@ use App\Models\Ally;
 use App\Models\People;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
@@ -20,11 +21,11 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+
         return [
-            'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
            // 'email_verified_at' => now(),
-            'password' => fake()->password, // password
+           'password' => Hash::make('secret'),
             'remember_token' => Str::random(10),
             'verified'=> $verificado= fake()->randomElement([User::USUARIO_VERIFICADO, User::USUARIO_NO_VERIFICADO]),
             'verification_token' =>$verificado == User::USUARIO_VERIFICADO? null: User::generarVerificationToken(),

@@ -27,10 +27,12 @@ class TalentTransformer extends TransformerAbstract
             'fechaEliminacion' => isset($talento->deleted_at) ? (string) $talento->deleted_at : null,
             'convocatoria' => (string)$talento->announcement,
             'persona' => (int)$talento->people_id,
-            [
-                'rel' => 'self',
-                'href' => route('talento.show', $talento->id),
-            ]
+            'links' =>[
+                [
+                    'rel' => 'self',
+                    'href' => route('talento.show', $talento->id),
+                ],
+            ], 
         ];
     }
     public static function originalAttribute($index)

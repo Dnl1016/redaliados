@@ -13,6 +13,7 @@ class TalentController extends ApiController
     public function __construct()
     {   
         $this->middleware('client.credentials')->only(['index', 'show']);
+        $this->middleware('auth:api')->except(['show', 'index']);
         $this->middleware('transform.input:' . TalentTransformer::class)->only(['store', 'update']);
     }
     /**

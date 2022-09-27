@@ -11,6 +11,7 @@ class StatusController extends ApiController
 {
     public function __construct()
     {
+        $this->middleware('auth:api')->except(['show', 'index']);
         $this->middleware('client.credentials')->only(['index', 'show']);
         $this->middleware('transform.input:' . StatusTransformer::class)->only(['store', 'update']);
     }

@@ -18,6 +18,12 @@ class EconomicSectorTransformer extends TransformerAbstract
         return [
             "identificador" => (int)$sector->id,
             'sectorEconomico' => (string)$sector->name,
+            'links' =>[
+                [
+                    'rel' => 'self',
+                    'href' => route('idea.show', $sector->id),
+                ],
+            ],
         ];
     }
 
