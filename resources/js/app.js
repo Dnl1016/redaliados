@@ -5,7 +5,12 @@
  */
 
 import './bootstrap';
+import JQuery from 'jquery'
+window.$ = JQuery
 import { createApp } from 'vue';
+// import App from './App.vue'
+import PersonalAccessTokens from './components/PersonalAccessTokens.vue';
+// app.component('example-component', ExampleComponent);
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -15,8 +20,8 @@ import { createApp } from 'vue';
 
 const app = createApp({});
 
-import ExampleComponent from './components/ExampleComponent.vue';
-app.component('example-component', ExampleComponent);
+// import ExampleComponent from './components/ExampleComponent.vue';
+// 
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,6 +34,19 @@ app.component('example-component', ExampleComponent);
 // Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
 //     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
 // });
+// app.component(
+// 	'passport-personal-access-tokens',
+// 	require('./components/PersonalAccessTokens.vue'));
+//app.component('passport-personal-access-tokens', {'./components/PersonalAccessTokens.vue': any})
+app.component('passport-personal-access-tokens', PersonalAccessTokens);
+
+// app.component(
+// 	'passport-clients',
+// 	require('./components/Clients.vue'));
+
+// app.component(
+// 	'passport-authorized-clients',
+// 	require('./components/AuthorizedClients.vue'));
 
 /**
  * Finally, we will attach the application instance to a HTML element with

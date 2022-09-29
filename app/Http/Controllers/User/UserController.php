@@ -79,7 +79,7 @@ class UserController extends ApiController
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function show(User $usuario)
     {
         // return new ($usuario);

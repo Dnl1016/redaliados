@@ -12,6 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -30,6 +31,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                    @if (Auth::check())
+                            <li><a href="{{route('personal-tokens')}}">My Tokens</a></li>
+                            <!-- <li><a href="{{route('personal-clients')}}">My Clients</a></li>
+                            <li><a href="{{route('authorized-clients')}}">Authorized Clients</a></li> -->
+                        @endif
 
                     </ul>
 
@@ -76,5 +82,6 @@
             @yield('content')
         </main>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </body>
 </html>
