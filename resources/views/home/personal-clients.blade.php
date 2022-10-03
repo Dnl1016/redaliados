@@ -7,3 +7,4 @@ window.Vue = require('vue');
         <passport-clients></passport-clients>
     </div>
 </div>
+@endsection

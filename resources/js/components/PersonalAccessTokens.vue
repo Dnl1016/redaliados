@@ -227,7 +227,7 @@
             store() {
                 this.accessToken = null;
                 this.form.errors = [];
-                axios.post('/oauth/personal-access-tokens', this.form)
+            axios.post(`${app_domail}/oauth/personal-access-tokens`, this.form )
                         .then(response => {
                             this.form.name = '';
                             this.form.scopes = [];

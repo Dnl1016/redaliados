@@ -7,6 +7,7 @@
 import './bootstrap';
 import JQuery from 'jquery'
 window.$ = JQuery
+window.app_domail = 'http://localhost/redaliados/public';
 import { createApp } from 'vue';
 // import App from './App.vue'
 import PersonalAccessTokens from './components/PersonalAccessTokens.vue';
@@ -19,6 +20,7 @@ import PersonalAccessTokens from './components/PersonalAccessTokens.vue';
  */
 
 const app = createApp({});
+
 
 // import ExampleComponent from './components/ExampleComponent.vue';
 // 

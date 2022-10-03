@@ -2,6 +2,7 @@
     .action-link {
         cursor: pointer;
     }
+
     .m-b-none {
         margin-bottom: 0;
     }
@@ -221,11 +222,13 @@
         data() {
             return {
                 clients: [],
+
                 createForm: {
                     errors: [],
                     name: '',
                     redirect: ''
                 },
+
                 editForm: {
                     errors: [],
                     name: '',
@@ -233,31 +236,37 @@
                 }
             };
         },
+
         /**
          * Prepare the component (Vue 1.x).
          */
         ready() {
             this.prepareComponent();
         },
+
         /**
          * Prepare the component (Vue 2.x).
          */
         mounted() {
             this.prepareComponent();
         },
+
         methods: {
             /**
              * Prepare the component.
              */
             prepareComponent() {
                 this.getClients();
+
                 $('#modal-create-client').on('shown.bs.modal', () => {
                     $('#create-client-name').focus();
                 });
+
                 $('#modal-edit-client').on('shown.bs.modal', () => {
                     $('#edit-client-name').focus();
                 });
             },
+
             /**
              * Get all of the OAuth clients for the user.
              */
@@ -267,12 +276,14 @@
                             this.clients = response.data;
                         });
             },
+
             /**
              * Show the form for creating new clients.
              */
             showCreateClientForm() {
                 $('#modal-create-client').modal('show');
             },
+
             /**
              * Create a new OAuth client for the user.
              */
@@ -282,6 +293,7 @@
                     this.createForm, '#modal-create-client'
                 );
             },
+
             /**
              * Edit the given client.
              */
@@ -289,8 +301,10 @@
                 this.editForm.id = client.id;
                 this.editForm.name = client.name;
                 this.editForm.redirect = client.redirect;
+
                 $('#modal-edit-client').modal('show');
             },
+
             /**
              * Update the client being edited.
              */
@@ -300,17 +314,21 @@
                     this.editForm, '#modal-edit-client'
                 );
             },
+
             /**
              * Persist the client to storage using the given form.
              */
             persistClient(method, uri, form, modal) {
                 form.errors = [];
+
                 axios[method](uri, form)
                     .then(response => {
                         this.getClients();
+
                         form.name = '';
                         form.redirect = '';
                         form.errors = [];
+
                         $(modal).modal('hide');
                     })
                     .catch(error => {
@@ -321,6 +339,7 @@
                         }
                     });
             },
+
             /**
              * Destroy the given client.
              */
