@@ -12,7 +12,7 @@ class UserTransformer extends TransformerAbstract
     public function transform(User $user)
     {
         return [
-            "identificador" => (int)$user->id,
+            'identificador' => (int)$user->id,
             'correo' => (string)$user->email,
             'esVerificado' => (int)$user->verified,
             'esAdministrador' => ($user->admin === 'true'),
@@ -33,7 +33,7 @@ class UserTransformer extends TransformerAbstract
     public static function originalAttribute($index)
     {
         $attributes = [
-            "identificador" => 'id',
+            'identificador' => 'id',
             'correo' => 'email',
             'esVerificado' => 'verified',
             'esAdministrador' => 'admin',
@@ -42,7 +42,7 @@ class UserTransformer extends TransformerAbstract
             'fechaEliminacion' => 'deleted_at',
             'persona' => 'people_id',
             'aliado'=> 'allies_id',
-            'estado'=>'status',
+            'estado'=>'status'
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;

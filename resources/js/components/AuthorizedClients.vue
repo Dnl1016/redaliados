@@ -1,4 +1,4 @@
-<<style scoped>
+<style scoped>
     .action-link {
         cursor: pointer;
     }
@@ -6,13 +6,11 @@
         margin-bottom: 0;
     }
 </style>
-
 <template>
     <div>
         <div v-if="tokens.length > 0">
             <div class="panel panel-default">
                 <div class="panel-heading">Authorized Applications</div>
-
                 <div class="panel-body">
                     <!-- Authorized Tokens -->
                     <table class="table table-borderless m-b-none">
@@ -86,7 +84,7 @@
              * Get all of the authorized tokens for the user.
              */
             getTokens() {
-                axios.get('/oauth/tokens')
+                axios.get(`${app_domail}/oauth/tokens`)
                         .then(response => {
                             this.tokens = response.data;
                         });
@@ -95,7 +93,7 @@
              * Revoke the given token.
              */
             revoke(token) {
-                axios.delete('/oauth/tokens/' + token.id)
+                axios.delete(`${app_domail}/oauth/tokens/`+ token.id)
                         .then(response => {
                             this.getTokens();
                         });

@@ -150,12 +150,10 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button " class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
                         <h4 class="modal-title">
                             Edit Client
                         </h4>
                     </div>
-
                     <div class="modal-body">
                         <!-- Form Errors -->
                         <div class="alert alert-danger" v-if="editForm.errors.length > 0">
@@ -167,7 +165,6 @@
                                 </li>
                             </ul>
                         </div>
-
                         <!-- Edit Client Form -->
                         <form class="form-horizontal" role="form">
                             <!-- Name -->
@@ -271,7 +268,7 @@
              * Get all of the OAuth clients for the user.
              */
             getClients() {
-                axios.get('/oauth/clients')
+                axios.get(`${app_domail}/oauth/clients`)
                         .then(response => {
                             this.clients = response.data;
                         });
@@ -289,7 +286,7 @@
              */
             store() {
                 this.persistClient(
-                    'post', '/oauth/clients',
+                    'post', `${app_domail}/oauth/clients`,
                     this.createForm, '#modal-create-client'
                 );
             },
@@ -310,7 +307,7 @@
              */
             update() {
                 this.persistClient(
-                    'put', '/oauth/clients/' + this.editForm.id,
+                    'put', `${app_domail}/oauth/clients/` + this.editForm.id,
                     this.editForm, '#modal-edit-client'
                 );
             },
@@ -344,7 +341,7 @@
              * Destroy the given client.
              */
             destroy(client) {
-                axios.delete('/oauth/clients/' + client.id)
+                axios.delete(`${app_domail}/oauth/clients/` + client.id)
                         .then(response => {
                             this.getClients();
                         });

@@ -25,7 +25,7 @@ class UserFactory extends Factory
         return [
             'email' => fake()->unique()->safeEmail(),
            // 'email_verified_at' => now(),
-           'password' => Hash::make('secret'),
+            'password' => Hash::make('secret'),
             'remember_token' => Str::random(10),
             'verified'=> $verificado= fake()->randomElement([User::USUARIO_VERIFICADO, User::USUARIO_NO_VERIFICADO]),
             'verification_token' =>$verificado == User::USUARIO_VERIFICADO? null: User::generarVerificationToken(),

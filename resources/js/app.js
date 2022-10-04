@@ -7,10 +7,13 @@
 import './bootstrap';
 import JQuery from 'jquery'
 window.$ = JQuery
+
 window.app_domail = 'http://localhost/redaliados/public';
 import { createApp } from 'vue';
 // import App from './App.vue'
 import PersonalAccessTokens from './components/PersonalAccessTokens.vue';
+import Clients from './components/Clients.vue';
+import AuthorizedClients from './components/AuthorizedClients.vue';
 // app.component('example-component', ExampleComponent);
 
 /**
@@ -41,6 +44,8 @@ const app = createApp({});
 // 	require('./components/PersonalAccessTokens.vue'));
 //app.component('passport-personal-access-tokens', {'./components/PersonalAccessTokens.vue': any})
 app.component('passport-personal-access-tokens', PersonalAccessTokens);
+app.component('passport-clients', Clients);
+app.component('passport-authorized-clients', AuthorizedClients);
 
 // app.component(
 // 	'passport-clients',

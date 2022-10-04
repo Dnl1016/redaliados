@@ -132,7 +132,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button " class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
                         <h4 class="modal-title">
                             Personal Access Token
                         </h4>
@@ -201,7 +200,7 @@
              * Get all of the personal access tokens for the user.
              */
             getTokens() {
-                axios.get('/oauth/personal-access-tokens')
+                axios.get(`${app_domail}/oauth/personal-access-tokens`)
                         .then(response => {
                             this.tokens = response.data;
                         });
@@ -210,7 +209,7 @@
              * Get all of the available scopes.
              */
             getScopes() {
-                axios.get('/oauth/scopes')
+                axios.get(`${app_domail}/oauth/scopes`)
                         .then(response => {
                             this.scopes = response.data;
                         });
@@ -271,7 +270,7 @@
              * Revoke the given token.
              */
             revoke(token) {
-                axios.delete('/oauth/personal-access-tokens/' + token.id)
+                axios.delete(`${app_domail}/oauth/personal-access-tokens/`+ token.id)
                         .then(response => {
                             this.getTokens();
                         });
