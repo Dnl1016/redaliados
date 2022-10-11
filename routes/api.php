@@ -40,6 +40,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //usuarios
 // Route::apiResource('usuarios', UserController::class);
+Route::name('me')->get('usuarios/me', 'User\UserController@me');
+
 Route::get('usuarios', [UserController::class, 'index']) ->name('usuarios.index');
 
 Route::get('usuario/{usuario}', [UserController::class, 'show']) ->name('usuario.show');

@@ -16,6 +16,7 @@ class PeopleController extends  ApiController
         $this->middleware('auth:api')->except(['show', 'index']);
         $this->middleware('client.credentials')->only(['index', 'show']);
         $this->middleware('transform.input:' . PeopleTransformer::class)->only(['store', 'update']);
+        $this->middleware('scope:read-general')->only('show', 'index');
     }
     /**
      * Display a listing of the resource.

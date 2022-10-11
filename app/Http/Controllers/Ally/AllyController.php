@@ -14,6 +14,7 @@ class AllyController extends ApiController
         $this->middleware('auth:api')->except(['show', 'index']);
         $this->middleware('client.credentials');
         $this->middleware('transform.input:' . AllyTransformer::class)->only(['store', 'update']);
+        $this->middleware('scope:read-general')->only('show', 'index');
     }
     /**
      * Display a listing of the resource.

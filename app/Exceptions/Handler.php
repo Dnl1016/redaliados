@@ -2,18 +2,22 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Auth\AuthenticationException;
-use App\Traits\ApiResponser;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Exception;
+use App\Traits\ApiResponser;
+use Fruitcake\Cors\CorsService;
+use Illuminate\Database\QueryException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Session\TokenMismatchException;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Illuminate\Database\QueryException;
+
+
 
 class Handler extends ExceptionHandler
 {
@@ -21,7 +25,7 @@ class Handler extends ExceptionHandler
     /**
      * A list of exception types with their corresponding custom log levels.
      *
-     * @var array<class-string<\Throwable>, \Psr\Log\LogLevel::*>
+     * @var array<class-string <\Throwable>, \Psr\Log\LogLevel::*>
      */
     protected $levels = [
         //
@@ -47,6 +51,8 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+    
+
     /**
      * Register the exception handling callbacks for the application.
      *
@@ -68,12 +74,22 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
+        $response = $this->handleException($request, $exception);
+
+        app(CorsService::class)->addActualRequestHeaders($response, $request);
+
+        return $response;
+    }
+
+    public function handleException($request, Exception $exception)
+    {
         if ($exception instanceof ValidationException) {
             return $this->convertValidationExceptionToResponse($exception, $request);
         }
+
         if ($exception instanceof ModelNotFoundException) {
-            $modelo = class_basename($exception->getModel());
-            return $this->errorResponse("No existe Ninguna Instancia de {$modelo} con el id espeficico", 404);
+            $modelo = strtolower(class_basename($exception->getModel()));
+            return $this->errorResponse("No existe ninguna instancia de {$modelo} con el id especificado", 404);
         }
 
         if ($exception instanceof AuthenticationException) {
@@ -83,6 +99,7 @@ class Handler extends ExceptionHandler
         if ($exception instanceof AuthorizationException) {
             return $this->errorResponse('No posee permisos para ejecutar esta acción', 403);
         }
+
         if ($exception instanceof NotFoundHttpException) {
             return $this->errorResponse('No se encontró la URL especificada', 404);
         }
@@ -90,9 +107,11 @@ class Handler extends ExceptionHandler
         if ($exception instanceof MethodNotAllowedHttpException) {
             return $this->errorResponse('El método especificado en la petición no es válido', 405);
         }
+
         if ($exception instanceof HttpException) {
             return $this->errorResponse($exception->getMessage(), $exception->getStatusCode());
         }
+
         if ($exception instanceof QueryException) {
             $codigo = $exception->errorInfo[1];
 
@@ -100,17 +119,16 @@ class Handler extends ExceptionHandler
                 return $this->errorResponse('No se puede eliminar de forma permamente el recurso porque está relacionado con algún otro.', 409);
             }
         }
+
         if ($exception instanceof TokenMismatchException) {
             return redirect()->back()->withInput($request->input());
         }
-        
-        return parent::render($request, $exception);
+
         if (config('app.debug')) {
             return parent::render($request, $exception);            
         }
 
         return $this->errorResponse('Falla inesperada. Intente luego', 500);
-
     }
 
     protected function unauthenticated($request, AuthenticationException $exception)

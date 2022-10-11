@@ -153,6 +153,14 @@ class UserController extends ApiController
         // ->response()
         // ->setStatusCode(202);
     }
+    
+    public function me(Request $request)
+    {
+        $user = $request->user();
+        
+        return $this->showOne($user);
+    }
+
 
     public function verify($token)
     {
