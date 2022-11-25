@@ -38,6 +38,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route:
+
 //usuarios
 // Route::apiResource('usuarios', UserController::class);
 Route::name('me')->get('usuarios/me', 'User\UserController@me');
@@ -198,3 +200,4 @@ Route::delete('aliado/{aliado}', [AllyController::class, 'destroy'])->name('alia
 
 Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
 
+Route::post('/login', 'loginController@login');  
