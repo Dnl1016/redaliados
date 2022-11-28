@@ -16,11 +16,14 @@ class LoginControlller extends Controller
                 "message" => "usuario y/o contraseña es invalido."
             ], 401);
         }
-        $accesstoken = Auth::user()->createToken('authTestToken')->accessToken;
+        // $accesstoken = Auth::user()->createToken('authTestToken');
+        // $user = $request->user();
+        // $tokenResult = $user->createToken('Personal Access Token');
+        // $token = $tokenResult->token;
         
-        return response([
-            "user"=>Auth::user(),
-            "access_token"=> $accesstoken
-        ]);
+        // return response([
+        //     "user"=>Auth::user(),
+        //     "access_token"=> $accesstoken
+        // ]);
     }   
 }
