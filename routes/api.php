@@ -198,12 +198,3 @@ Route::delete('aliado/{aliado}', [AllyController::class, 'destroy'])->name('alia
 
 Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
 
-// |--------------------------------------------------------------------------| API Routes|--------------------------------------------------------------------------|
-Route::group(['prefix' => 'auth'], function () {
-  Route::post('login', 'Auth\AuthController@login')->name('login');
-  Route::post('register', 'Auth\AuthController@register');
-  Route::group(['middleware' => 'auth:api'], function() {
-   Route::get('logout', 'Auth\AuthController@logout');
-   Route::get('user', 'Auth\AuthController@user');
-  });
-});
